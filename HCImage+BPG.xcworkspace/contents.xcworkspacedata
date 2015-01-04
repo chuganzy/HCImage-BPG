@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Example/Example.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:HCImage+BPG"
+      name = "HCImage+BPG">
+      <Group
+         location = "group:libbpg"
+         name = "libbpg">
+         <Group
+            location = "group:include"
+            name = "include">
+            <FileRef
+               location = "group:libbpg.h">
+            </FileRef>
+         </Group>
+         <Group
+            location = "group:lib"
+            name = "lib">
+            <FileRef
+               location = "group:libbpg.a">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:LICENSE">
+         </FileRef>
+         <FileRef
+            location = "group:VERSION">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:HCImage+BPG.h">
+      </FileRef>
+      <FileRef
+         location = "group:HCImage+BPG.m">
+      </FileRef>
+      <FileRef
+         location = "group:HCImage.h">
+      </FileRef>
+   </Group>
+</Workspace>

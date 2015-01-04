@@ -1,0 +1,1 @@
+../../../HCImage+BPG/libbpg/include/libbpg.h
