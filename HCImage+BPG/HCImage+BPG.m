@@ -57,9 +57,9 @@ static void release_image_data(void *info, const void *data, size_t size) {
     CGColorSpaceRelease(colorSpace);
     CGDataProviderRelease(dataProvider);
 #if TARGET_OS_IPHONE
-    HCImage *image = [HCImage imageWithCGImage:cgImage];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
 #else
-    HCImage *image = [[HCImage alloc] initWithCGImage:cgImage size:NSMakeSize(width, height)];
+    NSImage *image = [[NSImage alloc] initWithCGImage:cgImage size:NSMakeSize(width, height)];
 #endif
     CGImageRelease(cgImage);
     return image;
