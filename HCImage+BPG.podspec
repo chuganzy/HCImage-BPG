@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "HCImage+BPG"
-  s.version               = "1.0"
+  s.version               = "1.1"
   s.source                = { :git => "https://github.com/hoppenichu/HCImage-BPG.git", :tag => s.version }
 
   s.summary               = "BPG decoder for iOS and OS X"
