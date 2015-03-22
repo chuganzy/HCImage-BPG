@@ -2,10 +2,7 @@
 
 BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
 
-![](https://img.shields.io/travis/hoppenichu/HCImage-BPG.svg)
-![](https://img.shields.io/cocoapods/v/HCImage+BPG.svg)
-![](https://img.shields.io/cocoapods/p/HCImage+BPG.svg)
-![](https://img.shields.io/cocoapods/l/HCImage+BPG.svg)
+[![Travis CI](https://travis-ci.org/hoppenichu/HCImage-BPG.svg)](https://travis-ci.org/hoppenichu/HCImage-BPG)
 
 ## License
 
