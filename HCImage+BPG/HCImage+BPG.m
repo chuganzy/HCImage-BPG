@@ -15,14 +15,15 @@ static void release_image_data(void *info, const void *data, size_t size) {
 + (HCImage *)imageWithBPGData:(NSData *)data {
     BPGDecoderContext *decoderContext;
     decoderContext = bpg_decoder_open();
-    if (bpg_decoder_decode(decoderContext, [data bytes], (int) [data length]) < 0) {
+    if (bpg_decoder_decode(decoderContext, data.bytes, (int) data.length) < 0) {
+        bpg_decoder_close(decoderContext);
         return nil;
     }
     BPGImageInfo imageInfo;
     bpg_decoder_get_info(decoderContext, &imageInfo);
 
-    const size_t width = (size_t) imageInfo.width;
-    const size_t height = (size_t) imageInfo.height;
+    const size_t width = imageInfo.width;
+    const size_t height = imageInfo.height;
 
     const size_t lineSize = 4 * width;
     const size_t size = lineSize * height;

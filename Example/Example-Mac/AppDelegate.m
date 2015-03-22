@@ -2,20 +2,24 @@
 //  AppDelegate.m
 //  Example-Mac
 //
-//  Created by Takeru Chuganji on 1/4/15.
+//  Created by Takeru Chuganji on 3/22/15.
 //
 //
 
 #import "AppDelegate.h"
+#import "HCImage+BPG.h"
 
 @interface AppDelegate ()
-
+@property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSImageView *imageView;
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"bpg"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    self.imageView.image = [NSImage imageWithBPGData:data];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
