@@ -1,0 +1,4 @@
+language: objective-c
+script:
+- xctool -workspace HCImage+BPG.xcworkspace -scheme Example-Mac
+- xctool -workspace HCImage+BPG.xcworkspace -scheme Example-iOS -sdk iphonesimulator
