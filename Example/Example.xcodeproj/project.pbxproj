@@ -55,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0013BD291B5BD70B00156F46 /* HCAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCAttributes.h; sourceTree = "<group>"; };
 		00219F6C1A59802500EBD4E6 /* sample.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = sample.bpg; sourceTree = "<group>"; };
 		00B12FC81ABEC955005932F4 /* Example-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B12FCB1ABEC955005932F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -269,6 +270,7 @@
 				00B4D8E41A5976A80090300C /* HCImage+BPG.h */,
 				00B4D8E51A5976A80090300C /* HCImage+BPG.m */,
 				00B4D8E61A5976A80090300C /* HCImage.h */,
+				0013BD291B5BD70B00156F46 /* HCAttributes.h */,
 			);
 			name = "HCImage+BPG";
 			path = "../HCImage+BPG";

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00B4D88E1A5975880090300C"
-               BuildableName = "Example-iOS.app"
+               BuildableName = "Example-iOS"
                BlueprintName = "Example-iOS"
                ReferencedContainer = "container:Example.xcodeproj">
             </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "00B4D88E1A5975880090300C"
-            BuildableName = "Example-iOS.app"
+            BuildableName = "Example-iOS"
             BlueprintName = "Example-iOS"
             ReferencedContainer = "container:Example.xcodeproj">
          </BuildableReference>

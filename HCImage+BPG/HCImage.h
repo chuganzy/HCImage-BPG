@@ -14,4 +14,4 @@
     #define HCImage NSImage
 #endif
 
-#endif
+#endif /* _HCImage_h */

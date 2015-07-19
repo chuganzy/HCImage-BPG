@@ -40,5 +40,8 @@
       <FileRef
          location = "group:HCImage.h">
       </FileRef>
+      <FileRef
+         location = "group:HCAttributes.h">
+      </FileRef>
    </Group>
 </Workspace>
