@@ -5,7 +5,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HCImage.h"
+#import "HCAttributes.h"
 
 @interface HCImage (BPG)
-+ (HCImage *)imageWithBPGData:(NSData *)data;
++ (HCImage * HC_NULLABLE)imageWithBPGData:(NSData * HC_NONNULL)data;
 @end
