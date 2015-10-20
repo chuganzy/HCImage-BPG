@@ -4,7 +4,9 @@
 //
 
 #import "HCImage+BPG.h"
-#import <libbpg/libbpg.h>
+extern "C" {
+    #import <libbpg/libbpg.h>
+}
 
 @implementation HCImage (BPG)
 
@@ -15,7 +17,7 @@ static void release_image_data(void *info, const void *data, size_t size) {
 + (HCImage *)imageWithBPGData:(NSData *)data {
     BPGDecoderContext *decoderContext;
     decoderContext = bpg_decoder_open();
-    if (bpg_decoder_decode(decoderContext, data.bytes, (int) data.length) < 0) {
+    if (bpg_decoder_decode(decoderContext, (uint8_t *) data.bytes, (int) data.length) < 0) {
         bpg_decoder_close(decoderContext);
         return nil;
     }
@@ -29,13 +31,13 @@ static void release_image_data(void *info, const void *data, size_t size) {
     const size_t size = lineSize * height;
 
     bpg_decoder_start(decoderContext, BPG_OUTPUT_FORMAT_RGBA32);
-    uint8_t *rgbaLine = malloc(lineSize);
-    uint8_t *rgbaBuffer = malloc(size);
+    uint8_t *rgbaLine = new uint8_t[lineSize];
+    uint8_t *rgbaBuffer = new uint8_t[size];
     for (int y = 0; y < height; y++) {
         bpg_decoder_get_line(decoderContext, rgbaLine);
         memcpy(rgbaBuffer + (y * lineSize), rgbaLine, lineSize);
     }
-    free(rgbaLine);
+    delete rgbaLine;
     bpg_decoder_close(decoderContext);
     CGDataProviderRef dataProvider = CGDataProviderCreateWithData(
             NULL,

@@ -16,8 +16,8 @@
 		00B12FE11ABEC955005932F4 /* Example_MacTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B12FE01ABEC955005932F4 /* Example_MacTests.m */; };
 		00B12FE81ABEC973005932F4 /* sample.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00219F6C1A59802500EBD4E6 /* sample.bpg */; };
 		00B12FE91ABEC974005932F4 /* sample.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00219F6C1A59802500EBD4E6 /* sample.bpg */; };
-		00B12FEA1ABEC999005932F4 /* HCImage+BPG.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.m */; };
-		00B12FEB1ABEC999005932F4 /* HCImage+BPG.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.m */; };
+		00B12FEA1ABEC999005932F4 /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.mm */; };
+		00B12FEB1ABEC999005932F4 /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.mm */; };
 		00B12FEC1ABEC9A4005932F4 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B4D8DF1A5976A80090300C /* libbpg.a */; };
 		00B12FED1ABEC9A5005932F4 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B4D8DF1A5976A80090300C /* libbpg.a */; };
 		00B4D8951A5975880090300C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8941A5975880090300C /* main.m */; };
@@ -33,8 +33,8 @@
 		00B4D8ED1A5976A90090300C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 00B4D8E11A5976A80090300C /* LICENSE */; };
 		00B4D8F01A5976A90090300C /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 00B4D8E21A5976A80090300C /* VERSION */; };
 		00B4D8F11A5976A90090300C /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 00B4D8E21A5976A80090300C /* VERSION */; };
-		00B4D8F41A5976A90090300C /* HCImage+BPG.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.m */; };
-		00B4D8F51A5976A90090300C /* HCImage+BPG.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.m */; };
+		00B4D8F41A5976A90090300C /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.mm */; };
+		00B4D8F51A5976A90090300C /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00B4D8E51A5976A80090300C /* HCImage+BPG.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +85,7 @@
 		00B4D8E11A5976A80090300C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		00B4D8E21A5976A80090300C /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		00B4D8E41A5976A80090300C /* HCImage+BPG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCImage+BPG.h"; sourceTree = "<group>"; };
-		00B4D8E51A5976A80090300C /* HCImage+BPG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HCImage+BPG.m"; sourceTree = "<group>"; };
+		00B4D8E51A5976A80090300C /* HCImage+BPG.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "HCImage+BPG.mm"; sourceTree = "<group>"; };
 		00B4D8E61A5976A80090300C /* HCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImage.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -268,7 +268,7 @@
 			children = (
 				00B4D8E31A5976A80090300C /* libbpg */,
 				00B4D8E41A5976A80090300C /* HCImage+BPG.h */,
-				00B4D8E51A5976A80090300C /* HCImage+BPG.m */,
+				00B4D8E51A5976A80090300C /* HCImage+BPG.mm */,
 				00B4D8E61A5976A80090300C /* HCImage.h */,
 				0013BD291B5BD70B00156F46 /* HCAttributes.h */,
 			);
@@ -444,7 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00B12FD01ABEC955005932F4 /* main.m in Sources */,
-				00B12FEA1ABEC999005932F4 /* HCImage+BPG.m in Sources */,
+				00B12FEA1ABEC999005932F4 /* HCImage+BPG.mm in Sources */,
 				00B12FCE1ABEC955005932F4 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00B12FEB1ABEC999005932F4 /* HCImage+BPG.m in Sources */,
+				00B12FEB1ABEC999005932F4 /* HCImage+BPG.mm in Sources */,
 				00B12FE11ABEC955005932F4 /* Example_MacTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,7 +464,7 @@
 			files = (
 				00B4D89B1A5975880090300C /* ViewController.m in Sources */,
 				00B4D8981A5975880090300C /* AppDelegate.m in Sources */,
-				00B4D8F41A5976A90090300C /* HCImage+BPG.m in Sources */,
+				00B4D8F41A5976A90090300C /* HCImage+BPG.mm in Sources */,
 				00B4D8951A5975880090300C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,7 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00B4D8F51A5976A90090300C /* HCImage+BPG.m in Sources */,
+				00B4D8F51A5976A90090300C /* HCImage+BPG.mm in Sources */,
 				00B4D8AF1A5975890090300C /* Example_iOSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
