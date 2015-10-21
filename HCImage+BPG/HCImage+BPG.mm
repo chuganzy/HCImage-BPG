@@ -10,10 +10,6 @@ extern "C" {
     #import <libbpg/libbpg.h>
 }
 
-#if !TARGET_OS_IPHONE
-#import <ImageIO/ImageIO.h>
-#endif
-
 class Decoder {
 public:
     Decoder(const uint8_t *, int);
@@ -22,7 +18,6 @@ public:
 
 private:
     static void release_image_data(void *, const void *, size_t);
-
     HCImage *get_current_frame_image();
     CGImageRef get_current_frame_cg_image();
     CGImageRef create_cg_image_with_buffer(const uint8_t *const);
@@ -96,17 +91,17 @@ HCImage *Decoder::decode() {
 #else
     size_t number_of_frames = infos.size();
     NSMutableData *data = [NSMutableData data];
-    CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
-    for (CGImageFrameInfo data : infos) {
+    CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
+    for (CGImageFrameInfo info : infos) {
         NSDictionary *properties = @{
-                                     (__bridge NSString *)kCGImagePropertyGIFDelayTime: @(data.frame_duration),
-                                };
-        CGImageDestinationAddImage(destination, data.image, (CFDictionaryRef) properties);
+                (__bridge NSString *) kCGImagePropertyGIFDelayTime : @(info.frame_duration),
+        };
+        CGImageDestinationAddImage(destination, info.image, (__bridge CFDictionaryRef) properties);
     }
     NSDictionary *properties = @{
-                                 (__bridge NSString *)kCGImagePropertyGIFLoopCount: @(m_image_info.loop_count),
-                                 };
-    CGImageDestinationSetProperties(destination, (CFDictionaryRef) properties);
+            (__bridge NSString *) kCGImagePropertyGIFLoopCount : @(m_image_info.loop_count),
+    };
+    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef) properties);
     CGImageDestinationFinalize(destination);
     return [[NSImage alloc] initWithData:data];
 #endif
@@ -146,24 +141,19 @@ CGImageRef Decoder::create_cg_image_with_buffer(const uint8_t *const buffer) {
 }
 
 uint8_t *Decoder::get_current_frame_buffer() {
-    uint8_t *frame_line_buffer = new uint8_t[m_frame_line_size];
-    if (frame_line_buffer == NULL) {
-        throw "could not create frame line buffer";
-    }
-    uint8_t *frame_total_buffer = new uint8_t[m_frame_total_size];
-    if (frame_total_buffer == NULL) {
-        delete frame_line_buffer;
-        throw "could not create frame total buffer";
+    uint8_t *frame_total_buffer;
+    try {
+        frame_total_buffer = new uint8_t[m_frame_total_size];
+    } catch (...) {
+        delete frame_total_buffer;
+        throw "could not create buffer";
     }
     for (int y = 0; y < m_image_info.height; ++y) {
-        if (bpg_decoder_get_line(m_context, frame_line_buffer) < 0) {
-            delete frame_line_buffer;
+        if (bpg_decoder_get_line(m_context, frame_total_buffer + (y * m_frame_line_size)) < 0) {
             delete frame_total_buffer;
             throw "could not get frame line";
         }
-        memcpy(frame_total_buffer + (y * m_frame_line_size), frame_line_buffer, m_frame_line_size);
     }
-    delete frame_line_buffer;
     return frame_total_buffer;
 }
 
