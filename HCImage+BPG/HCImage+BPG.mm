@@ -17,22 +17,23 @@ extern "C" {
 class Decoder {
 public:
     Decoder(const uint8_t *, int);
-    HCImage *decode();
     ~Decoder();
-    
+    HCImage *decode();
+
 private:
+    static void release_image_data(void *, const void *, size_t);
+
     HCImage *get_current_frame_image();
     CGImageRef get_current_frame_cg_image();
     CGImageRef create_cg_image_with_buffer(const uint8_t *const);
     uint8_t *get_current_frame_buffer();
-    static void release_image_data(void *, const void *, size_t);
 
     BPGDecoderContext *m_context;
     BPGImageInfo m_image_info;
     CGColorSpaceRef m_color_space;
     size_t m_frame_line_size;
     size_t m_frame_total_size;
-    
+
     struct CGImageFrameInfo {
         CGImageRef image;
         NSTimeInterval frame_duration;
@@ -40,10 +41,11 @@ private:
 };
 
 void Decoder::release_image_data(void *info, const void *data, size_t size) {
-    delete (uint8_t *)data;
+    delete (uint8_t *) data;
 }
 
-Decoder::Decoder(const uint8_t *buffer, int buffer_length): m_context(bpg_decoder_open()), m_color_space(CGColorSpaceCreateDeviceRGB()) {
+Decoder::Decoder(const uint8_t *buffer, int buffer_length)
+        : m_context(bpg_decoder_open()), m_color_space(CGColorSpaceCreateDeviceRGB()) {
     if (m_context == NULL) {
         throw "could not open decoder";
     }
@@ -73,29 +75,29 @@ HCImage *Decoder::decode() {
     if (!m_image_info.has_animation) {
         return this->get_current_frame_image();
     }
-    std::vector<CGImageFrameInfo> data_array;
+    std::vector<CGImageFrameInfo> infos;
     do {
         int num, den;
         bpg_decoder_get_frame_duration(m_context, &num, &den);
         struct CGImageFrameInfo data;
         data.image = this->get_current_frame_cg_image();
-        data.frame_duration = (NSTimeInterval)num / den;
-        data_array.push_back(data);
+        data.frame_duration = (NSTimeInterval) num / den;
+        infos.push_back(data);
     } while (bpg_decoder_start(m_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
-    
+
 #if TARGET_OS_IPHONE
     NSMutableArray *images = [NSMutableArray array];
     NSTimeInterval total_duration = 0;
-    for (CGImageFrameInfo data : data_array) {
+    for (CGImageFrameInfo data : infos) {
         [images addObject:[UIImage imageWithCGImage:data.image]];
         total_duration += data.frame_duration;
     }
     return [UIImage animatedImageWithImages:images duration:total_duration];
 #else
-    size_t number_of_frames = data_array.size();
+    size_t number_of_frames = infos.size();
     NSMutableData *data = [NSMutableData data];
     CGImageDestinationRef destination = CGImageDestinationCreateWithData((CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
-    for (CGImageFrameInfo data : data_array) {
+    for (CGImageFrameInfo data : infos) {
         NSDictionary *properties = @{
                                      (__bridge NSString *)kCGImagePropertyGIFDelayTime: @(data.frame_duration),
                                 };
@@ -125,22 +127,22 @@ CGImageRef Decoder::get_current_frame_cg_image() {
 
 CGImageRef Decoder::create_cg_image_with_buffer(const uint8_t *const buffer) {
     CGDataProviderRef data_provider = CGDataProviderCreateWithData(
-                                 NULL,
-                                 buffer,
-                                 m_frame_total_size,
-                                 release_image_data);
+            NULL,
+            buffer,
+            m_frame_total_size,
+            release_image_data);
     return CGImageCreate(
-                  m_image_info.width,
-                  m_image_info.height,
-                  8,
-                  4 * 8,
-                  m_frame_line_size,
-                  m_color_space,
-                  (CGBitmapInfo) (kCGImageAlphaLast | kCGBitmapByteOrder32Big),
-                  data_provider,
-                  NULL,
-                  NO,
-                  kCGRenderingIntentDefault);
+            m_image_info.width,
+            m_image_info.height,
+            8,
+            4 * 8,
+            m_frame_line_size,
+            m_color_space,
+            (CGBitmapInfo) (kCGImageAlphaLast | kCGBitmapByteOrder32Big),
+            data_provider,
+            NULL,
+            NO,
+            kCGRenderingIntentDefault);
 }
 
 uint8_t *Decoder::get_current_frame_buffer() {
