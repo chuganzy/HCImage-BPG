@@ -19,6 +19,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"bpg"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
+    self.imageView.animates = YES;
     self.imageView.image = [NSImage imageWithBPGData:data];
 }
 
