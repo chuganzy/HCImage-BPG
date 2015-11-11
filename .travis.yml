@@ -1,4 +1,11 @@
-language: objective-c
+os: osx
+osx_image: xcode7.1
+env:
+  matrix:
+    - PLATFORM=iOS
+    - PLATFORM=Mac
 script:
-- xctool -workspace HCImage+BPG.xcworkspace -scheme Example-Mac
-- xctool -workspace HCImage+BPG.xcworkspace -scheme Example-iOS -sdk iphonesimulator
+- set -o pipefail
+- cd Example/"$PLATFORM"
+- pod install
+- xcodebuild -workspace Example.xcworkspace -scheme Example
