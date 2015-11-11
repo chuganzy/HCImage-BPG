@@ -8,4 +8,4 @@ script:
 - set -o pipefail
 - cd Example/"$PLATFORM"
 - pod install
-- xcodebuild -workspace Example.xcworkspace -scheme Example
+- xctool -workspace Example.xcworkspace -scheme Example
