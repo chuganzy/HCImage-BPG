@@ -1,0 +1,16 @@
+PODS:
+  - HCImage+BPG (1.2):
+    - HCImage+BPG/libbpg (= 1.2)
+  - HCImage+BPG/libbpg (1.2)
+
+DEPENDENCIES:
+  - HCImage+BPG (from `../../`)
+
+EXTERNAL SOURCES:
+  HCImage+BPG:
+    :path: ../../
+
+SPEC CHECKSUMS:
+  HCImage+BPG: a5a59bc9c061ce07393f90521796ee377923024c
+
+COCOAPODS: 0.39.0
