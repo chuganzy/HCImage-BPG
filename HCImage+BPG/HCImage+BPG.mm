@@ -28,11 +28,6 @@ private:
     CGColorSpaceRef m_color_space;
     size_t m_frame_line_size;
     size_t m_frame_total_size;
-
-    struct CGImageFrameInfo {
-        CGImageRef image;
-        NSTimeInterval frame_duration;
-    };
 };
 
 void Decoder::release_image_data(void *info, const void *data, size_t size) {
@@ -70,11 +65,17 @@ HCImage *Decoder::decode() {
     if (!m_image_info.has_animation) {
         return this->get_current_frame_image();
     }
+    
+    struct CGImageFrameInfo {
+        CGImageRef image;
+        NSTimeInterval frame_duration;
+    };
+    
     std::vector<CGImageFrameInfo> infos;
     do {
         int num, den;
         bpg_decoder_get_frame_duration(m_context, &num, &den);
-        struct CGImageFrameInfo data;
+        CGImageFrameInfo data;
         data.image = this->get_current_frame_cg_image();
         data.frame_duration = (NSTimeInterval) num / den;
         infos.push_back(data);
