@@ -18,7 +18,7 @@ public:
 
 private:
     static void release_image_data(void *, const void *, size_t);
-    HCImage *get_current_frame_image();
+    HCImage *get_image_with_cg_image(CGImage *const);
     CGImageRef get_current_frame_cg_image();
     CGImageRef create_cg_image_with_buffer(const uint8_t *const);
     uint8_t *get_current_frame_buffer();
@@ -63,19 +63,19 @@ HCImage *Decoder::decode() {
         throw "could not start decode";
     }
     if (!m_image_info.has_animation) {
-        return this->get_current_frame_image();
+        return this->get_image_with_cg_image(this->get_current_frame_cg_image());
     }
     
-    struct CGImageFrameInfo {
+    struct FrameInfo {
         CGImageRef image;
         NSTimeInterval frame_duration;
     };
     
-    std::vector<CGImageFrameInfo> infos;
+    std::vector<FrameInfo> infos;
     do {
         int num, den;
         bpg_decoder_get_frame_duration(m_context, &num, &den);
-        CGImageFrameInfo data;
+        FrameInfo data;
         data.image = this->get_current_frame_cg_image();
         data.frame_duration = (NSTimeInterval) num / den;
         infos.push_back(data);
@@ -84,16 +84,16 @@ HCImage *Decoder::decode() {
 #if TARGET_OS_IPHONE
     NSMutableArray *images = [NSMutableArray array];
     NSTimeInterval total_duration = 0;
-    for (CGImageFrameInfo data : infos) {
-        [images addObject:[UIImage imageWithCGImage:data.image]];
-        total_duration += data.frame_duration;
+    for (FrameInfo info : infos) {
+        [images addObject:this->get_image_with_cg_image(info.image)];
+        total_duration += info.frame_duration;
     }
     return [UIImage animatedImageWithImages:images duration:total_duration];
 #else
     size_t number_of_frames = infos.size();
     NSMutableData *data = [NSMutableData data];
     CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
-    for (CGImageFrameInfo info : infos) {
+    for (FrameInfo info : infos) {
         NSDictionary *properties = @{
                 (__bridge NSString *) kCGImagePropertyGIFDelayTime : @(info.frame_duration),
         };
@@ -108,12 +108,11 @@ HCImage *Decoder::decode() {
 #endif
 }
 
-HCImage *Decoder::get_current_frame_image() {
-    CGImageRef cg_image = this->get_current_frame_cg_image();
+HCImage *Decoder::get_image_with_cg_image(CGImage *const image) {
 #if TARGET_OS_IPHONE
-    return [UIImage imageWithCGImage:cg_image];
+    return [UIImage imageWithCGImage:image];
 #else
-    return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
+    return [[NSImage alloc] initWithCGImage:image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
 }
 
