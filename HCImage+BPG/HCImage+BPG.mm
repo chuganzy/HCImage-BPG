@@ -84,7 +84,10 @@ HCImage *Decoder::decode() {
     NSMutableArray *images = [NSMutableArray array];
     NSTimeInterval total_duration = 0;
     for (CGImageFrameInfo data : infos) {
-        [images addObject:[UIImage imageWithCGImage:data.image]];
+        UIImage *image = [UIImage imageWithCGImage:data.image
+                                             scale:[UIScreen mainScreen].scale
+                                       orientation:UIImageOrientationUp];
+        [images addObject:image];
         total_duration += data.frame_duration;
     }
     return [UIImage animatedImageWithImages:images duration:total_duration];
@@ -110,7 +113,7 @@ HCImage *Decoder::decode() {
 HCImage *Decoder::get_current_frame_image() {
     CGImageRef cg_image = this->get_current_frame_cg_image();
 #if TARGET_OS_IPHONE
-    return [UIImage imageWithCGImage:cg_image];
+    return [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
 #else
     return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
