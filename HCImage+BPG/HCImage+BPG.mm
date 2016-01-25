@@ -112,11 +112,14 @@ HCImage *Decoder::decode() {
 
 HCImage *Decoder::get_current_frame_image() {
     CGImageRef cg_image = this->get_current_frame_cg_image();
+    HCImage *image;
 #if TARGET_OS_IPHONE
-    return [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+    image = [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
 #else
-    return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
+    image = [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
+    CFRelease(cg_image);
+    return image;
 }
 
 CGImageRef Decoder::get_current_frame_cg_image() {
@@ -129,7 +132,7 @@ CGImageRef Decoder::create_cg_image_with_buffer(const uint8_t *const buffer) {
             buffer,
             m_frame_total_size,
             release_image_data);
-    return CGImageCreate(
+    CGImageRef image = CGImageCreate(
             m_image_info.width,
             m_image_info.height,
             8,
@@ -141,6 +144,8 @@ CGImageRef Decoder::create_cg_image_with_buffer(const uint8_t *const buffer) {
             NULL,
             NO,
             kCGRenderingIntentDefault);
+    CFRelease(data_provider);
+    return image;
 }
 
 uint8_t *Decoder::get_current_frame_buffer() {
@@ -163,16 +168,22 @@ uint8_t *Decoder::get_current_frame_buffer() {
 @implementation HCImage (BPG)
 
 + (HCImage *)imageWithBPGData:(NSData *)data {
-    Decoder *decoder;
+    if (!data) {
+        return NULL;
+    }
+    
+    HCImage *image = NULL;
+    Decoder *decoder = NULL;
     try {
         decoder = new Decoder((uint8_t *) data.bytes, (int) data.length);
-        HCImage *image = decoder->decode();
-        delete decoder;
-        return image;
+        image = decoder->decode();
     } catch (...) {
-        delete decoder;
-        return nil;
+        image = NULL;
     }
+    if (decoder) {
+        delete decoder;
+    }
+    return image;
 }
 
 @end
