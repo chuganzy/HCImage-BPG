@@ -27,9 +27,11 @@ public:
     ~Decoder() {
         if (m_context != NULL) {
             bpg_decoder_close(m_context);
+            m_context = NULL;
         }
         if (m_color_space != NULL) {
             CGColorSpaceRelease(m_color_space);
+            m_color_space = NULL;
         }
     }
     
@@ -48,8 +50,9 @@ public:
             }
             
             ~CGImageFrameInfo() {
-                if (m_image) {
+                if (m_image != NULL) {
                     CGImageRelease(m_image);
+                    m_image = NULL;
                 }
             }
             
