@@ -39,17 +39,19 @@ public:
         if (bpg_decoder_start(m_context, BPG_OUTPUT_FORMAT_RGBA32) < 0) {
             throw "could not start decode";
         }
-        if (!m_image_info.has_animation) {
-            return this->get_current_frame_image();
-        }
-        class CGImageFrameInfo {
+        
+        class FrameInfo {
         public:
-            CGImageFrameInfo(CGImageRef image, NSTimeInterval frame_duration)
+            static shared_ptr<FrameInfo> info(CGImageRef image, NSTimeInterval frame_duration) {
+                return make_shared<FrameInfo>(image, frame_duration);
+            }
+            
+            FrameInfo(CGImageRef image, NSTimeInterval frame_duration)
             : m_image(image), m_frame_duration(frame_duration) {
                 
             }
             
-            ~CGImageFrameInfo() {
+            ~FrameInfo() {
                 if (m_image != NULL) {
                     CGImageRelease(m_image);
                     m_image = NULL;
@@ -68,20 +70,22 @@ public:
             NSTimeInterval m_frame_duration;
         };
         
-        vector<shared_ptr<CGImageFrameInfo>> infos;
+        if (!m_image_info.has_animation) {
+            return get_image_with_cg_image(FrameInfo::info(get_current_frame_cg_image(), 0)->get_image());
+        }
+        
+        vector<shared_ptr<FrameInfo>> infos;
         do {
             int num, den;
             bpg_decoder_get_frame_duration(m_context, &num, &den);
-            infos.push_back(make_shared<CGImageFrameInfo>(this->get_current_frame_cg_image(), (NSTimeInterval) num / den));
+            infos.push_back(FrameInfo::info(get_current_frame_cg_image(), (NSTimeInterval) num / den));
         } while (bpg_decoder_start(m_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
         
 #if TARGET_OS_IPHONE
         NSMutableArray *images = [NSMutableArray array];
         NSTimeInterval total_duration = 0;
-        for (shared_ptr<CGImageFrameInfo> info : infos) {
-            UIImage *image = [UIImage imageWithCGImage:info->get_image()
-                                                 scale:[UIScreen mainScreen].scale
-                                           orientation:UIImageOrientationUp];
+        for (shared_ptr<FrameInfo> info : infos) {
+            UIImage *image = get_image_with_cg_image(info->get_image());
             [images addObject:image];
             total_duration += info->get_frame_duration();
         }
@@ -90,7 +94,7 @@ public:
         size_t number_of_frames = infos.size();
         NSMutableData *data = [NSMutableData data];
         CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
-        for (shared_ptr<CGImageFrameInfo> info : infos) {
+        for (shared_ptr<FrameInfo> info : infos) {
             NSDictionary *properties = @{
                                          (__bridge NSString *) kCGImagePropertyGIFDelayTime : @(info->get_frame_duration()),
                                          };
@@ -131,20 +135,16 @@ private:
         m_frame_total_size = m_frame_line_size * m_image_info.height;
     }
     
-    HCImage *get_current_frame_image() {
-        CGImageRef cg_image = this->get_current_frame_cg_image();
-        HCImage *image;
+    HCImage *get_image_with_cg_image(CGImage *const cg_image) {
 #if TARGET_OS_IPHONE
-        image = [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+        return [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
 #else
-        image = [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
+        return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
-        CGImageRelease(cg_image);
-        return image;
     }
     
     CGImageRef get_current_frame_cg_image() {
-        return this->create_cg_image_with_buffer(this->get_current_frame_buffer());
+        return create_cg_image_with_buffer(get_current_frame_buffer());
     }
     
     CGImageRef create_cg_image_with_buffer(const uint8_t *const buffer) {
