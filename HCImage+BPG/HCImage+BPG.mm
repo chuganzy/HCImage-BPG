@@ -118,7 +118,7 @@ HCImage *Decoder::get_current_frame_image() {
 #else
     image = [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
-    CFRelease(cg_image);
+    CGImageRelease(cg_image);
     return image;
 }
 
@@ -144,7 +144,7 @@ CGImageRef Decoder::create_cg_image_with_buffer(const uint8_t *const buffer) {
             NULL,
             NO,
             kCGRenderingIntentDefault);
-    CFRelease(data_provider);
+    CGDataProviderRelease(data_provider);
     return image;
 }
 
@@ -168,21 +168,16 @@ uint8_t *Decoder::get_current_frame_buffer() {
 @implementation HCImage (BPG)
 
 + (HCImage *)imageWithBPGData:(NSData *)data {
-    if (!data) {
-        return NULL;
-    }
-    
-    HCImage *image = NULL;
+    NSParameterAssert(data);
+    HCImage *image = nil;
     Decoder *decoder = NULL;
     try {
         decoder = new Decoder((uint8_t *) data.bytes, (int) data.length);
         image = decoder->decode();
     } catch (...) {
-        image = NULL;
+        image = nil;
     }
-    if (decoder) {
-        delete decoder;
-    }
+    delete decoder;
     return image;
 }
 
