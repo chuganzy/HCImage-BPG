@@ -5,6 +5,7 @@
 
 #import "HCImage+BPG.h"
 #import <vector>
+#import <memory>
 
 extern "C" {
     #import <libbpg/libbpg.h>
@@ -170,7 +171,6 @@ private:
         try {
             frame_total_buffer = new uint8_t[m_frame_total_size];
         } catch (...) {
-            delete frame_total_buffer;
             throw "could not create buffer";
         }
         for (int y = 0; y < m_image_info.height; ++y) {
