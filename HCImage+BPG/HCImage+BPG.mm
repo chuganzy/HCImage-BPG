@@ -21,7 +21,11 @@ public:
         return decoder;
     }
     
-    Decoder() : m_context(bpg_decoder_open()), m_color_space(CGColorSpaceCreateDeviceRGB()) {
+    Decoder() : m_context(bpg_decoder_open()), m_color_space(CGColorSpaceCreateDeviceRGB())
+#if TARGET_OS_IPHONE
+    , m_image_scale([UIScreen mainScreen].scale)
+#endif
+    {
     }
     
     ~Decoder() {
@@ -116,6 +120,9 @@ private:
     CGColorSpaceRef m_color_space;
     size_t m_frame_line_size;
     size_t m_frame_total_size;
+#if TARGET_OS_IPHONE
+    CGFloat m_image_scale;
+#endif
     
     static void release_image_data(void *info, const void *data, size_t size) {
         delete (uint8_t *) data;
@@ -137,7 +144,7 @@ private:
     
     HCImage *get_image_with_cg_image(CGImage *const cg_image) {
 #if TARGET_OS_IPHONE
-        return [UIImage imageWithCGImage:cg_image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+        return [UIImage imageWithCGImage:cg_image scale:m_image_scale orientation:UIImageOrientationUp];
 #else
         return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
 #endif
