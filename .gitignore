@@ -24,3 +24,7 @@ DerivedData
 
 # CocoaPods
 Pods/
+
+# Bundler
+#
+/bundler/

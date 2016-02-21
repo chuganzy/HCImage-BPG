@@ -6,190 +6,158 @@
 #import "HCImage+BPG.h"
 #import <vector>
 #import <memory>
+#import "Internal/CG.hpp"
 
 extern "C" {
-    #import <libbpg/libbpg.h>
+#import <libbpg/libbpg.h>
 }
 
-using namespace std;
-
-class Decoder {
+class Decoder
+{
 public:
-    static shared_ptr<Decoder> decoder(const uint8_t *buffer, int buffer_length) {
-        shared_ptr<Decoder> decoder = make_shared<Decoder>();
-        decoder->initialize(buffer, buffer_length);
-        return decoder;
-    }
-    
-    Decoder() : m_context(bpg_decoder_open()), m_color_space(CGColorSpaceCreateDeviceRGB())
+    Decoder(const uint8_t *buffer, int length) :
+    _colorSpace(CG::ColorSpace::CreateDeviceRGB())
+    ,_context(bpg_decoder_open())
 #if TARGET_OS_IPHONE
-    , m_image_scale([UIScreen mainScreen].scale)
+    ,_imageScale([UIScreen mainScreen].scale)
 #endif
     {
+        if (!this->_context) {
+            throw "bpg_decoder_open";
+        }
+        if (bpg_decoder_decode(this->_context, buffer, length) != 0) {
+            throw "bpg_decoder_decode";
+        }
+        if (bpg_decoder_get_info(this->_context, &this->_imageInfo) != 0) {
+            throw "bpg_decoder_get_info";
+        }
+        this->_imageLineSize = 4 * this->_imageInfo.width;
+        this->_imageTotalSize = this->_imageLineSize * this->_imageInfo.height;
     }
     
-    ~Decoder() {
-        if (m_context != NULL) {
-            bpg_decoder_close(m_context);
-            m_context = NULL;
+    HCImage *decode() const
+    {
+        if (bpg_decoder_start(this->_context, BPG_OUTPUT_FORMAT_RGBA32) != 0) {
+            throw "bpg_decoder_start";
         }
-        if (m_color_space != NULL) {
-            CGColorSpaceRelease(m_color_space);
-            m_color_space = NULL;
-        }
-    }
-    
-    HCImage *decode() {
-        if (bpg_decoder_start(m_context, BPG_OUTPUT_FORMAT_RGBA32) < 0) {
-            throw "could not start decode";
+        if (!this->_imageInfo.has_animation) {
+            return this->cgImageToHCImage(*this->getCurrentFrameCGImage());
         }
         
-        class FrameInfo {
-        public:
-            static shared_ptr<FrameInfo> info(CGImageRef image, NSTimeInterval frame_duration) {
-                return make_shared<FrameInfo>(image, frame_duration);
-            }
-            
-            FrameInfo(CGImageRef image, NSTimeInterval frame_duration)
-            : m_image(image), m_frame_duration(frame_duration) {
-                
-            }
-            
-            ~FrameInfo() {
-                if (m_image != NULL) {
-                    CGImageRelease(m_image);
-                    m_image = NULL;
-                }
-            }
-            
-            CGImageRef get_image() {
-                return m_image;
-            }
-            
-            NSTimeInterval get_frame_duration() {
-                return m_frame_duration;
-            }
-        private:
-            CGImageRef m_image;
-            NSTimeInterval m_frame_duration;
+        struct FrameInfo {
+            std::shared_ptr<CG::Image> image;
+            NSTimeInterval duration;
         };
         
-        if (!m_image_info.has_animation) {
-            return get_image_with_cg_image(FrameInfo::info(get_current_frame_cg_image(), 0)->get_image());
-        }
-        
-        vector<shared_ptr<FrameInfo>> infos;
+        std::vector<FrameInfo> infos;
         do {
             int num, den;
-            bpg_decoder_get_frame_duration(m_context, &num, &den);
-            infos.push_back(FrameInfo::info(get_current_frame_cg_image(), (NSTimeInterval) num / den));
-        } while (bpg_decoder_start(m_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
+            bpg_decoder_get_frame_duration(this->_context, &num, &den);
+            infos.push_back({
+                this->getCurrentFrameCGImage(),
+                (NSTimeInterval)num / den
+            });
+        } while (bpg_decoder_start(this->_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
+        
         
 #if TARGET_OS_IPHONE
-        NSMutableArray *images = [NSMutableArray array];
-        NSTimeInterval total_duration = 0;
-        for (shared_ptr<FrameInfo> info : infos) {
-            UIImage *image = get_image_with_cg_image(info->get_image());
-            [images addObject:image];
-            total_duration += info->get_frame_duration();
+        NSMutableArray *images = [NSMutableArray arrayWithCapacity:infos.size()];
+        NSTimeInterval totalDuration = 0;
+        for (auto info : infos) {
+            totalDuration += info.duration;
+            [images addObject:this->cgImageToHCImage(*info.image)];
         }
-        return [UIImage animatedImageWithImages:images duration:total_duration];
+        return [UIImage animatedImageWithImages:images duration:totalDuration];
+        
 #else
-        size_t number_of_frames = infos.size();
         NSMutableData *data = [NSMutableData data];
-        CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef) data, kUTTypeGIF, number_of_frames, NULL);
-        for (shared_ptr<FrameInfo> info : infos) {
-            NSDictionary *properties = @{
-                                         (__bridge NSString *) kCGImagePropertyGIFDelayTime : @(info->get_frame_duration()),
+        CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)data,
+                                                                             kUTTypeGIF,
+                                                                             infos.size(),
+                                                                             nullptr);
+        NSDictionary *destProperties = @{
+                                         (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
+                                                 (__bridge NSString *)kCGImagePropertyGIFLoopCount : @(this->_imageInfo.loop_count),
+                                                 }
                                          };
-            CGImageDestinationAddImage(destination, info->get_image(), (__bridge CFDictionaryRef) properties);
+        CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)destProperties);
+        for (auto info : infos) {
+            NSDictionary *properties = @{
+                                         (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
+                                                 (__bridge NSString *)kCGImagePropertyGIFDelayTime : @(info.duration),
+                                                 }
+                                         };
+            CGImageDestinationAddImage(destination, *info.image, (__bridge CFDictionaryRef)properties);
         }
-        NSDictionary *properties = @{
-                                     (__bridge NSString *) kCGImagePropertyGIFLoopCount : @(m_image_info.loop_count),
-                                     };
-        CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef) properties);
         CGImageDestinationFinalize(destination);
         CFRelease(destination);
         return [[NSImage alloc] initWithData:data];
 #endif
     }
     
+    ~Decoder()
+    {
+        if (this->_context) {
+            bpg_decoder_close(this->_context);
+            this->_context = nullptr;
+        }
+    }
+    
 private:
-    BPGDecoderContext *m_context;
-    BPGImageInfo m_image_info;
-    CGColorSpaceRef m_color_space;
-    size_t m_frame_line_size;
-    size_t m_frame_total_size;
+    CG::ColorSpace _colorSpace;
+    BPGDecoderContext *_context;
+    BPGImageInfo _imageInfo;
+    size_t _imageLineSize;
+    size_t _imageTotalSize;
 #if TARGET_OS_IPHONE
-    CGFloat m_image_scale;
+    CGFloat _imageScale;
 #endif
     
-    static void release_image_data(void *info, const void *data, size_t size) {
-        delete (uint8_t *) data;
+    static void releaseImageData(void *info, const void *data, size_t size)
+    {
+        delete (uint8_t *)data;
     }
     
-    void initialize(const uint8_t *buffer, int buffer_length) {
-        if (m_context == NULL) {
-            throw "could not open decoder";
-        }
-        if (bpg_decoder_decode(m_context, buffer, buffer_length) < 0) {
-            throw "could not decode buffer";
-        }
-        if (bpg_decoder_get_info(m_context, &m_image_info) < 0) {
-            throw "could not get image info";
-        }
-        m_frame_line_size = 4 * m_image_info.width;
-        m_frame_total_size = m_frame_line_size * m_image_info.height;
-    }
-    
-    HCImage *get_image_with_cg_image(CGImage *const cg_image) {
-#if TARGET_OS_IPHONE
-        return [UIImage imageWithCGImage:cg_image scale:m_image_scale orientation:UIImageOrientationUp];
-#else
-        return [[NSImage alloc] initWithCGImage:cg_image size:NSMakeSize(m_image_info.width, m_image_info.height)];
-#endif
-    }
-    
-    CGImageRef get_current_frame_cg_image() {
-        return create_cg_image_with_buffer(get_current_frame_buffer());
-    }
-    
-    CGImageRef create_cg_image_with_buffer(const uint8_t *const buffer) {
-        CGDataProviderRef data_provider = CGDataProviderCreateWithData(
-                                                                       NULL,
-                                                                       buffer,
-                                                                       m_frame_total_size,
-                                                                       release_image_data);
-        CGImageRef image = CGImageCreate(
-                                         m_image_info.width,
-                                         m_image_info.height,
-                                         8,
-                                         4 * 8,
-                                         m_frame_line_size,
-                                         m_color_space,
-                                         (CGBitmapInfo) (kCGImageAlphaLast | kCGBitmapByteOrder32Big),
-                                         data_provider,
-                                         NULL,
-                                         NO,
-                                         kCGRenderingIntentDefault);
-        CGDataProviderRelease(data_provider);
-        return image;
-    }
-    
-    uint8_t *get_current_frame_buffer() {
-        uint8_t *frame_total_buffer;
-        try {
-            frame_total_buffer = new uint8_t[m_frame_total_size];
-        } catch (...) {
-            throw "could not create buffer";
-        }
-        for (int y = 0; y < m_image_info.height; ++y) {
-            if (bpg_decoder_get_line(m_context, frame_total_buffer + (y * m_frame_line_size)) < 0) {
-                delete frame_total_buffer;
-                throw "could not get frame line";
+    uint8_t *getCurrentFrameBuffer() const
+    {
+        uint8_t *buffer = new uint8_t[this->_imageTotalSize];
+        for (int y = 0; y < this->_imageInfo.height; ++y) {
+            if (bpg_decoder_get_line(this->_context, buffer + (y * this->_imageLineSize)) == 0) {
+                continue;
             }
+            delete buffer;
+            throw "bpg_decoder_get_line";
         }
-        return frame_total_buffer;
+        return buffer;
+    }
+    
+    std::shared_ptr<CG::Image> getCurrentFrameCGImage() const
+    {
+        CG::DataProvider provider = CG::DataProvider(nullptr,
+                                                     this->getCurrentFrameBuffer(),
+                                                     this->_imageTotalSize,
+                                                     this->releaseImageData
+                                                     );
+        return std::make_shared<CG::Image>(this->_imageInfo.width,
+                                           this->_imageInfo.height,
+                                           8,
+                                           4 * 8,
+                                           this->_imageLineSize,
+                                           this->_colorSpace,
+                                           (CGBitmapInfo)(kCGImageAlphaLast | kCGBitmapByteOrder32Big),
+                                           provider,
+                                           nullptr,
+                                           false,
+                                           kCGRenderingIntentDefault);
+    }
+    
+    HCImage *cgImageToHCImage(const CG::Image &image) const
+    {
+#if TARGET_OS_IPHONE
+        return [UIImage imageWithCGImage:image scale:this->_imageScale orientation:UIImageOrientationUp];
+#else
+        return [[NSImage alloc] initWithCGImage:image size:NSMakeSize(this->_imageInfo.width, this->_imageInfo.height)];
+#endif
     }
 };
 
@@ -198,7 +166,8 @@ private:
 + (HCImage *)imageWithBPGData:(NSData *)data {
     NSParameterAssert(data);
     try {
-        return Decoder::decoder((uint8_t *) data.bytes, (int) data.length)->decode();
+        Decoder decoder = Decoder((uint8_t *)data.bytes, (int)data.length);
+        return decoder.decode();
     } catch (...) {
         return nil;
     }
