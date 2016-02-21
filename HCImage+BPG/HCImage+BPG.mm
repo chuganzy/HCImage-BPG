@@ -74,7 +74,7 @@ public:
         CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)data,
                                                                              kUTTypeGIF,
                                                                              infos.size(),
-                                                                             NULL);
+                                                                             nullptr);
         NSDictionary *destProperties = @{
                                          (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
                                                  (__bridge NSString *)kCGImagePropertyGIFLoopCount : @(this->_imageInfo.loop_count),
@@ -165,7 +165,6 @@ private:
 
 + (HCImage *)imageWithBPGData:(NSData *)data {
     NSParameterAssert(data);
-    data = nil;
     try {
         Decoder decoder = Decoder((uint8_t *)data.bytes, (int)data.length);
         return decoder.decode();
