@@ -11,7 +11,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   s.requires_arc          = true
-  s.source_files          = 'HCImage+BPG/*.{h,m,mm}'
+  s.source_files          = 'HCImage+BPG/*.{h,mm}', 'HCImage+BPG/Internal/*.{hpp,cpp}'
+  s.private_header_files  = 'HCImage+BPG/Internal/*.hpp'
   s.library               = 'c++'
 
   s.default_subspec       = 'libbpg'
