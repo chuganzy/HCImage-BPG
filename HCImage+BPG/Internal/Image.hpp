@@ -35,5 +35,4 @@ namespace CG
     };
 }
 
-
 #endif /* Image_hpp */
