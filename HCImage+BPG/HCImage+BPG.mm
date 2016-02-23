@@ -31,7 +31,7 @@ public:
         if (bpg_decoder_get_info(this->_context, &this->_imageInfo) != 0) {
             throw "bpg_decoder_get_info";
         }
-        this->_imageLineSize = 4 * this->_imageInfo.width;
+        this->_imageLineSize = (this->_imageInfo.has_alpha ? 4 : 3) * this->_imageInfo.width;
         this->_imageTotalSize = this->_imageLineSize * this->_imageInfo.height;
     }
     
@@ -58,7 +58,6 @@ public:
                 (NSTimeInterval)num / den
             });
         } while (bpg_decoder_start(this->_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
-        
         
 #if TARGET_OS_IPHONE
         NSMutableArray *images = [NSMutableArray arrayWithCapacity:infos.size()];
@@ -141,10 +140,10 @@ private:
         return std::make_shared<CG::Image>(this->_imageInfo.width,
                                            this->_imageInfo.height,
                                            8,
-                                           4 * 8,
+                                           (this->_imageInfo.has_alpha ? 4 : 3) * 8,
                                            this->_imageLineSize,
                                            this->_colorSpace,
-                                           (CGBitmapInfo)(kCGImageAlphaLast | kCGBitmapByteOrder32Big),
+                                           (CGBitmapInfo)((this->_imageInfo.has_alpha ? kCGImageAlphaLast : kCGImageAlphaNone) | kCGBitmapByteOrder32Big),
                                            provider,
                                            nullptr,
                                            false,
