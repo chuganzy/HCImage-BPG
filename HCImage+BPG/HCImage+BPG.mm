@@ -165,7 +165,7 @@ private:
 + (HCImage *)imageWithBPGData:(NSData *)data {
     NSParameterAssert(data);
     try {
-        Decoder decoder = Decoder((uint8_t *)data.bytes, (int)data.length);
+        Decoder decoder((uint8_t *)data.bytes, (int)data.length);
         return decoder.decode();
     } catch (...) {
         return nil;
