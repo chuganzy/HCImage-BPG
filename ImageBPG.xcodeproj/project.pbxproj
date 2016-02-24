@@ -8,35 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		002E3D021C7DF77400C3DBD3 /* ImageBPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 0066908B1C7DEDB50031F30C /* ImageBPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		002E3D031C7DF77D00C3DBD3 /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; };
-		002E3D041C7DF78300C3DBD3 /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; };
-		002E3D051C7DF78300C3DBD3 /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; };
+		002E3D031C7DF77D00C3DBD3 /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		002E3D041C7DF78300C3DBD3 /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		002E3D051C7DF78300C3DBD3 /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		002E3D061C7DF78700C3DBD3 /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 006690D01C7DF17B0031F30C /* HCImage+BPG.mm */; };
-		002E3D071C7DF79600C3DBD3 /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		002E3D091C7DF7AC00C3DBD3 /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D071C7DF79600C3DBD3 /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; };
+		002E3D091C7DF7AC00C3DBD3 /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; };
 		002E3D0A1C7DF7AC00C3DBD3 /* ColorSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690D91C7DF39E0031F30C /* ColorSpace.cpp */; };
-		002E3D0B1C7DF7AC00C3DBD3 /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0B1C7DF7AC00C3DBD3 /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; };
 		002E3D0C1C7DF7AC00C3DBD3 /* DataProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DB1C7DF39E0031F30C /* DataProvider.cpp */; };
-		002E3D0D1C7DF7AC00C3DBD3 /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0D1C7DF7AC00C3DBD3 /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; };
 		002E3D0E1C7DF7AC00C3DBD3 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DD1C7DF39E0031F30C /* Image.cpp */; };
-		002E3D0F1C7DF7AC00C3DBD3 /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0F1C7DF7AC00C3DBD3 /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; };
 		002E3D101C7DF80600C3DBD3 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690EB1C7DF3B50031F30C /* libbpg.a */; };
 		002E3D111C7DF80A00C3DBD3 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690ED1C7DF3B50031F30C /* libbpg.a */; };
 		002E3D131C7DF81E00C3DBD3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */; };
 		002E3D151C7DF82E00C3DBD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */; };
 		0066908C1C7DEDB50031F30C /* ImageBPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 0066908B1C7DEDB50031F30C /* ImageBPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		006690CE1C7DF0F70031F30C /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; };
-		006690D11C7DF17B0031F30C /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; };
+		006690CE1C7DF0F70031F30C /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		006690D11C7DF17B0031F30C /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		006690D21C7DF17B0031F30C /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 006690D01C7DF17B0031F30C /* HCImage+BPG.mm */; };
-		006690D61C7DF2120031F30C /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; };
-		006690DF1C7DF39E0031F30C /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690D61C7DF2120031F30C /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		006690DF1C7DF39E0031F30C /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; };
 		006690E01C7DF39E0031F30C /* ColorSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690D91C7DF39E0031F30C /* ColorSpace.cpp */; };
-		006690E11C7DF39E0031F30C /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E11C7DF39E0031F30C /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; };
 		006690E21C7DF39E0031F30C /* DataProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DB1C7DF39E0031F30C /* DataProvider.cpp */; };
-		006690E31C7DF39E0031F30C /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E31C7DF39E0031F30C /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; };
 		006690E41C7DF39E0031F30C /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DD1C7DF39E0031F30C /* Image.cpp */; };
-		006690E51C7DF39E0031F30C /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
-		006690F01C7DF3B50031F30C /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E51C7DF39E0031F30C /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; };
+		006690F01C7DF3B50031F30C /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; };
 		006690F71C7DF3FB0031F30C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690F61C7DF3FB0031F30C /* CoreGraphics.framework */; };
 		006690F91C7DF40F0031F30C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690F81C7DF40F0031F30C /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +102,8 @@
 		002E3D011C7DF61200C3DBD3 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
+				002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */,
+				002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */,
 			);
 			name = Mac;
 			sourceTree = "<group>";
@@ -109,8 +111,6 @@
 		0066907E1C7DEDB50031F30C = {
 			isa = PBXGroup;
 			children = (
-				002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */,
-				002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */,
 				0066908A1C7DEDB50031F30C /* ImageBPG */,
 				006690891C7DEDB50031F30C /* Products */,
 			);
@@ -128,14 +128,14 @@
 		0066908A1C7DEDB50031F30C /* ImageBPG */ = {
 			isa = PBXGroup;
 			children = (
-				006690F51C7DF3E80031F30C /* Frameworks */,
+				0066908D1C7DEDB50031F30C /* Info.plist */,
 				0066908B1C7DEDB50031F30C /* ImageBPG.h */,
 				006690CD1C7DF0F70031F30C /* HCImage.h */,
 				006690D51C7DF2120031F30C /* HCAttributes.h */,
 				006690CF1C7DF17B0031F30C /* HCImage+BPG.h */,
 				006690D01C7DF17B0031F30C /* HCImage+BPG.mm */,
+				006690F51C7DF3E80031F30C /* Frameworks */,
 				006690D71C7DF3860031F30C /* Internal */,
-				0066908D1C7DEDB50031F30C /* Info.plist */,
 			);
 			path = ImageBPG;
 			sourceTree = "<group>";
