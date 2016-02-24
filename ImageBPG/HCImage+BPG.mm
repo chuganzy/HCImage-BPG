@@ -9,7 +9,7 @@
 #import "Internal/CG.hpp"
 
 extern "C" {
-#import <libbpg/libbpg.h>
+#import "libbpg.h"
 }
 
 class Decoder

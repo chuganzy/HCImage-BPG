@@ -7,11 +7,11 @@
 #define _HCAttributes_h
 
 #if __has_feature(nullability)
-    #define HC_NULLABLE __nullable
-    #define HC_NONNULL __nonnull
+#define HC_NULLABLE __nullable
+#define HC_NONNULL __nonnull
 #else
-    #define HC_NULLABLE
-    #define HC_NONNULL
+#define HC_NULLABLE
+#define HC_NONNULL
 #endif
 
 #endif /* _HCAttributes_h */

@@ -1,0 +1,566 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		002E3D021C7DF77400C3DBD3 /* ImageBPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 0066908B1C7DEDB50031F30C /* ImageBPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		002E3D031C7DF77D00C3DBD3 /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; };
+		002E3D041C7DF78300C3DBD3 /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; };
+		002E3D051C7DF78300C3DBD3 /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; };
+		002E3D061C7DF78700C3DBD3 /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 006690D01C7DF17B0031F30C /* HCImage+BPG.mm */; };
+		002E3D071C7DF79600C3DBD3 /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D091C7DF7AC00C3DBD3 /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0A1C7DF7AC00C3DBD3 /* ColorSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690D91C7DF39E0031F30C /* ColorSpace.cpp */; };
+		002E3D0B1C7DF7AC00C3DBD3 /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0C1C7DF7AC00C3DBD3 /* DataProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DB1C7DF39E0031F30C /* DataProvider.cpp */; };
+		002E3D0D1C7DF7AC00C3DBD3 /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D0E1C7DF7AC00C3DBD3 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DD1C7DF39E0031F30C /* Image.cpp */; };
+		002E3D0F1C7DF7AC00C3DBD3 /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		002E3D101C7DF80600C3DBD3 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690EB1C7DF3B50031F30C /* libbpg.a */; };
+		002E3D111C7DF80A00C3DBD3 /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690ED1C7DF3B50031F30C /* libbpg.a */; };
+		002E3D131C7DF81E00C3DBD3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */; };
+		002E3D151C7DF82E00C3DBD3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */; };
+		0066908C1C7DEDB50031F30C /* ImageBPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 0066908B1C7DEDB50031F30C /* ImageBPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		006690CE1C7DF0F70031F30C /* HCImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CD1C7DF0F70031F30C /* HCImage.h */; };
+		006690D11C7DF17B0031F30C /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690CF1C7DF17B0031F30C /* HCImage+BPG.h */; };
+		006690D21C7DF17B0031F30C /* HCImage+BPG.mm in Sources */ = {isa = PBXBuildFile; fileRef = 006690D01C7DF17B0031F30C /* HCImage+BPG.mm */; };
+		006690D61C7DF2120031F30C /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690D51C7DF2120031F30C /* HCAttributes.h */; };
+		006690DF1C7DF39E0031F30C /* CG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690D81C7DF39E0031F30C /* CG.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E01C7DF39E0031F30C /* ColorSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690D91C7DF39E0031F30C /* ColorSpace.cpp */; };
+		006690E11C7DF39E0031F30C /* ColorSpace.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DA1C7DF39E0031F30C /* ColorSpace.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E21C7DF39E0031F30C /* DataProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DB1C7DF39E0031F30C /* DataProvider.cpp */; };
+		006690E31C7DF39E0031F30C /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DC1C7DF39E0031F30C /* DataProvider.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690E41C7DF39E0031F30C /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 006690DD1C7DF39E0031F30C /* Image.cpp */; };
+		006690E51C7DF39E0031F30C /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 006690DE1C7DF39E0031F30C /* Image.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690F01C7DF3B50031F30C /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 006690E81C7DF3B50031F30C /* libbpg.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		006690F71C7DF3FB0031F30C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690F61C7DF3FB0031F30C /* CoreGraphics.framework */; };
+		006690F91C7DF40F0031F30C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006690F81C7DF40F0031F30C /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		002E3CF81C7DF5F100C3DBD3 /* ImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		006690881C7DEDB50031F30C /* ImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0066908B1C7DEDB50031F30C /* ImageBPG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageBPG.h; sourceTree = "<group>"; };
+		0066908D1C7DEDB50031F30C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		006690CD1C7DF0F70031F30C /* HCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImage.h; sourceTree = "<group>"; };
+		006690CF1C7DF17B0031F30C /* HCImage+BPG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HCImage+BPG.h"; sourceTree = "<group>"; };
+		006690D01C7DF17B0031F30C /* HCImage+BPG.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "HCImage+BPG.mm"; sourceTree = "<group>"; };
+		006690D51C7DF2120031F30C /* HCAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAttributes.h; sourceTree = "<group>"; };
+		006690D81C7DF39E0031F30C /* CG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CG.hpp; sourceTree = "<group>"; };
+		006690D91C7DF39E0031F30C /* ColorSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorSpace.cpp; sourceTree = "<group>"; };
+		006690DA1C7DF39E0031F30C /* ColorSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorSpace.hpp; sourceTree = "<group>"; };
+		006690DB1C7DF39E0031F30C /* DataProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataProvider.cpp; sourceTree = "<group>"; };
+		006690DC1C7DF39E0031F30C /* DataProvider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataProvider.hpp; sourceTree = "<group>"; };
+		006690DD1C7DF39E0031F30C /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		006690DE1C7DF39E0031F30C /* Image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
+		006690E81C7DF3B50031F30C /* libbpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libbpg.h; sourceTree = "<group>"; };
+		006690EB1C7DF3B50031F30C /* libbpg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbpg.a; sourceTree = "<group>"; };
+		006690ED1C7DF3B50031F30C /* libbpg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbpg.a; sourceTree = "<group>"; };
+		006690F61C7DF3FB0031F30C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		006690F81C7DF40F0031F30C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		002E3CF41C7DF5F100C3DBD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002E3D151C7DF82E00C3DBD3 /* Cocoa.framework in Frameworks */,
+				002E3D131C7DF81E00C3DBD3 /* CoreGraphics.framework in Frameworks */,
+				002E3D111C7DF80A00C3DBD3 /* libbpg.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		006690841C7DEDB50031F30C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006690F91C7DF40F0031F30C /* UIKit.framework in Frameworks */,
+				006690F71C7DF3FB0031F30C /* CoreGraphics.framework in Frameworks */,
+				002E3D101C7DF80600C3DBD3 /* libbpg.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		002E3D001C7DF60A00C3DBD3 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				006690F81C7DF40F0031F30C /* UIKit.framework */,
+				006690F61C7DF3FB0031F30C /* CoreGraphics.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		002E3D011C7DF61200C3DBD3 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Mac;
+			sourceTree = "<group>";
+		};
+		0066907E1C7DEDB50031F30C = {
+			isa = PBXGroup;
+			children = (
+				002E3D141C7DF82E00C3DBD3 /* Cocoa.framework */,
+				002E3D121C7DF81E00C3DBD3 /* CoreGraphics.framework */,
+				0066908A1C7DEDB50031F30C /* ImageBPG */,
+				006690891C7DEDB50031F30C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		006690891C7DEDB50031F30C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				006690881C7DEDB50031F30C /* ImageBPG.framework */,
+				002E3CF81C7DF5F100C3DBD3 /* ImageBPG.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0066908A1C7DEDB50031F30C /* ImageBPG */ = {
+			isa = PBXGroup;
+			children = (
+				006690F51C7DF3E80031F30C /* Frameworks */,
+				0066908B1C7DEDB50031F30C /* ImageBPG.h */,
+				006690CD1C7DF0F70031F30C /* HCImage.h */,
+				006690D51C7DF2120031F30C /* HCAttributes.h */,
+				006690CF1C7DF17B0031F30C /* HCImage+BPG.h */,
+				006690D01C7DF17B0031F30C /* HCImage+BPG.mm */,
+				006690D71C7DF3860031F30C /* Internal */,
+				0066908D1C7DEDB50031F30C /* Info.plist */,
+			);
+			path = ImageBPG;
+			sourceTree = "<group>";
+		};
+		006690D71C7DF3860031F30C /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				006690E61C7DF3B50031F30C /* libbpg */,
+				006690D81C7DF39E0031F30C /* CG.hpp */,
+				006690D91C7DF39E0031F30C /* ColorSpace.cpp */,
+				006690DA1C7DF39E0031F30C /* ColorSpace.hpp */,
+				006690DB1C7DF39E0031F30C /* DataProvider.cpp */,
+				006690DC1C7DF39E0031F30C /* DataProvider.hpp */,
+				006690DD1C7DF39E0031F30C /* Image.cpp */,
+				006690DE1C7DF39E0031F30C /* Image.hpp */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		006690E61C7DF3B50031F30C /* libbpg */ = {
+			isa = PBXGroup;
+			children = (
+				006690E71C7DF3B50031F30C /* include */,
+				006690E91C7DF3B50031F30C /* lib */,
+			);
+			path = libbpg;
+			sourceTree = "<group>";
+		};
+		006690E71C7DF3B50031F30C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				006690E81C7DF3B50031F30C /* libbpg.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		006690E91C7DF3B50031F30C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				006690EA1C7DF3B50031F30C /* ios */,
+				006690EC1C7DF3B50031F30C /* mac */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		006690EA1C7DF3B50031F30C /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				006690EB1C7DF3B50031F30C /* libbpg.a */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		006690EC1C7DF3B50031F30C /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				006690ED1C7DF3B50031F30C /* libbpg.a */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
+		006690F51C7DF3E80031F30C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				002E3D011C7DF61200C3DBD3 /* Mac */,
+				002E3D001C7DF60A00C3DBD3 /* iOS */,
+			);
+			name = Frameworks;
+			path = Internal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		002E3CF51C7DF5F100C3DBD3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002E3D0B1C7DF7AC00C3DBD3 /* ColorSpace.hpp in Headers */,
+				002E3D041C7DF78300C3DBD3 /* HCAttributes.h in Headers */,
+				002E3D071C7DF79600C3DBD3 /* libbpg.h in Headers */,
+				002E3D0D1C7DF7AC00C3DBD3 /* DataProvider.hpp in Headers */,
+				002E3D051C7DF78300C3DBD3 /* HCImage+BPG.h in Headers */,
+				002E3D021C7DF77400C3DBD3 /* ImageBPG.h in Headers */,
+				002E3D0F1C7DF7AC00C3DBD3 /* Image.hpp in Headers */,
+				002E3D091C7DF7AC00C3DBD3 /* CG.hpp in Headers */,
+				002E3D031C7DF77D00C3DBD3 /* HCImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		006690851C7DEDB50031F30C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006690DF1C7DF39E0031F30C /* CG.hpp in Headers */,
+				0066908C1C7DEDB50031F30C /* ImageBPG.h in Headers */,
+				006690E51C7DF39E0031F30C /* Image.hpp in Headers */,
+				006690F01C7DF3B50031F30C /* libbpg.h in Headers */,
+				006690CE1C7DF0F70031F30C /* HCImage.h in Headers */,
+				006690D61C7DF2120031F30C /* HCAttributes.h in Headers */,
+				006690E31C7DF39E0031F30C /* DataProvider.hpp in Headers */,
+				006690D11C7DF17B0031F30C /* HCImage+BPG.h in Headers */,
+				006690E11C7DF39E0031F30C /* ColorSpace.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		002E3CF71C7DF5F100C3DBD3 /* ImageBPG-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 002E3CFD1C7DF5F100C3DBD3 /* Build configuration list for PBXNativeTarget "ImageBPG-Mac" */;
+			buildPhases = (
+				002E3CF31C7DF5F100C3DBD3 /* Sources */,
+				002E3CF41C7DF5F100C3DBD3 /* Frameworks */,
+				002E3CF51C7DF5F100C3DBD3 /* Headers */,
+				002E3CF61C7DF5F100C3DBD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ImageBPG-Mac";
+			productName = "ImageBPG-Mac";
+			productReference = 002E3CF81C7DF5F100C3DBD3 /* ImageBPG.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		006690871C7DEDB50031F30C /* ImageBPG-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 006690901C7DEDB50031F30C /* Build configuration list for PBXNativeTarget "ImageBPG-iOS" */;
+			buildPhases = (
+				006690831C7DEDB50031F30C /* Sources */,
+				006690841C7DEDB50031F30C /* Frameworks */,
+				006690851C7DEDB50031F30C /* Headers */,
+				006690861C7DEDB50031F30C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ImageBPG-iOS";
+			productName = ImageBPG;
+			productReference = 006690881C7DEDB50031F30C /* ImageBPG.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0066907F1C7DEDB50031F30C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Takeru Chuganji";
+				TargetAttributes = {
+					002E3CF71C7DF5F100C3DBD3 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					006690871C7DEDB50031F30C = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 006690821C7DEDB50031F30C /* Build configuration list for PBXProject "ImageBPG" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0066907E1C7DEDB50031F30C;
+			productRefGroup = 006690891C7DEDB50031F30C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				006690871C7DEDB50031F30C /* ImageBPG-iOS */,
+				002E3CF71C7DF5F100C3DBD3 /* ImageBPG-Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		002E3CF61C7DF5F100C3DBD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		006690861C7DEDB50031F30C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		002E3CF31C7DF5F100C3DBD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				002E3D0A1C7DF7AC00C3DBD3 /* ColorSpace.cpp in Sources */,
+				002E3D0E1C7DF7AC00C3DBD3 /* Image.cpp in Sources */,
+				002E3D0C1C7DF7AC00C3DBD3 /* DataProvider.cpp in Sources */,
+				002E3D061C7DF78700C3DBD3 /* HCImage+BPG.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		006690831C7DEDB50031F30C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006690E01C7DF39E0031F30C /* ColorSpace.cpp in Sources */,
+				006690E41C7DF39E0031F30C /* Image.cpp in Sources */,
+				006690E21C7DF39E0031F30C /* DataProvider.cpp in Sources */,
+				006690D21C7DF17B0031F30C /* HCImage+BPG.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		002E3CFE1C7DF5F100C3DBD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageBPG/Internal/libbpg/lib/mac",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		002E3CFF1C7DF5F100C3DBD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageBPG/Internal/libbpg/lib/mac",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		0066908E1C7DEDB50031F30C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ImageBPG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0066908F1C7DEDB50031F30C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = ImageBPG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		006690911C7DEDB50031F30C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageBPG/Internal/libbpg/lib/ios",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		006690921C7DEDB50031F30C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ImageBPG/Internal/libbpg/lib/ios",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		002E3CFD1C7DF5F100C3DBD3 /* Build configuration list for PBXNativeTarget "ImageBPG-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				002E3CFE1C7DF5F100C3DBD3 /* Debug */,
+				002E3CFF1C7DF5F100C3DBD3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		006690821C7DEDB50031F30C /* Build configuration list for PBXProject "ImageBPG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0066908E1C7DEDB50031F30C /* Debug */,
+				0066908F1C7DEDB50031F30C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		006690901C7DEDB50031F30C /* Build configuration list for PBXNativeTarget "ImageBPG-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				006690911C7DEDB50031F30C /* Debug */,
+				006690921C7DEDB50031F30C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0066907F1C7DEDB50031F30C /* Project object */;
+}

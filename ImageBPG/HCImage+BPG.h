@@ -3,7 +3,6 @@
 // Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "HCImage.h"
 #import "HCAttributes.h"
 
