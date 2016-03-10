@@ -39,7 +39,9 @@ public:
     
     HCImage *decode() const
     {
-        if (bpg_decoder_start(this->_context, BPG_OUTPUT_FORMAT_RGBA32) != 0) {
+        const BPGDecoderOutputFormat fmt = this->_imageInfo.has_alpha ?
+        BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
+        if (bpg_decoder_start(this->_context, fmt) != 0) {
             throw "bpg_decoder_start";
         }
         if (!this->_imageInfo.has_animation) {
@@ -59,7 +61,7 @@ public:
                 this->getCurrentFrameCGImage(),
                 (NSTimeInterval)num / den
             });
-        } while (bpg_decoder_start(this->_context, BPG_OUTPUT_FORMAT_RGBA32) == 0);
+        } while (bpg_decoder_start(this->_context, fmt) == 0);
         
 #if TARGET_OS_IPHONE
         NSMutableArray *images = [NSMutableArray arrayWithCapacity:infos.size()];
