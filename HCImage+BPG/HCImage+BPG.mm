@@ -26,9 +26,11 @@ public:
             throw "bpg_decoder_open";
         }
         if (bpg_decoder_decode(this->_context, buffer, length) != 0) {
+            bpg_decoder_close(this->_context);
             throw "bpg_decoder_decode";
         }
         if (bpg_decoder_get_info(this->_context, &this->_imageInfo) != 0) {
+            bpg_decoder_close(this->_context);
             throw "bpg_decoder_get_info";
         }
         this->_imageLineSize = (this->_imageInfo.has_alpha ? 4 : 3) * this->_imageInfo.width;
