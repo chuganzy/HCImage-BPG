@@ -25,6 +25,9 @@ DerivedData
 # CocoaPods
 Pods/
 
+# Fastlane
+/fastlane/report.xml
+/fastlane/test_output/*
+
 # Bundler
-#
 /bundler/

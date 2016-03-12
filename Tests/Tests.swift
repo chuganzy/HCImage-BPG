@@ -31,12 +31,12 @@ class Tests: XCTestCase {
             XCTAssertNotNil(decodeBPGWithName(name), name)
         }
     }
-
-#if os(iOS)
+    
+    #if os(iOS)
     func testDecodeAnimationImages() {
         XCTAssertEqual(decodeBPGWithName("animation-00000")?.images?.count, 40)
     }
-#endif
+    #endif
     
     private func decodeBPGWithName(name: String) -> ImageType? {
         return NSBundle(forClass: self.dynamicType)
