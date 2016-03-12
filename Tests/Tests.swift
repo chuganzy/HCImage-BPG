@@ -21,10 +21,14 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        let _ = NSBundle.mainBundle()
-            .pathForResource("image-001", ofType: "bpg")
-            .flatMap { NSData(contentsOfFile: $0) }
-            .flatMap { ImageType(BPGData: $0) }
+    func testDecodeImages() {
+        (0...19).forEach { index in
+            let name = String(format: "image-%05d", index)
+            let image = NSBundle(forClass: self.dynamicType)
+                .pathForResource(name, ofType: "bpg")
+                .flatMap { NSData(contentsOfFile: $0) }
+                .flatMap { ImageType(BPGData: $0) }
+            XCTAssertNotNil(image, name)
+        }
     }
 }
