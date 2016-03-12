@@ -32,15 +32,27 @@ class Tests: XCTestCase {
         }
     }
     
-    #if os(iOS)
-    func testDecodeAnimationImages() {
-        XCTAssertEqual(decodeBPGWithName("animation-00000")?.images?.count, 40)
+    func testDecodeInvalidImages() {
+        XCTAssertNil(decodeBPGWithName("jpeg-00000", type: "jpg"))
     }
-    #endif
     
-    private func decodeBPGWithName(name: String) -> ImageType? {
+    func testDecodeAnimationImages() {
+        let image = decodeBPGWithName("animation-00000")
+        let expectedCount = 40
+        #if os(iOS)
+            XCTAssertEqual(image?.images?.count, expectedCount)
+        #elseif os(OSX)
+            let count = image?.representations
+                .first.flatMap { $0 as? NSBitmapImageRep }?
+                .valueForProperty(NSImageFrameCount) as? Int
+            XCTAssertEqual(count, expectedCount)
+        #endif
+    }
+    
+    
+    private func decodeBPGWithName(name: String, type: String = "bpg") -> ImageType? {
         return NSBundle(forClass: self.dynamicType)
-            .pathForResource(name, ofType: "bpg")
+            .pathForResource(name, ofType: type)
             .flatMap { NSData(contentsOfFile: $0) }
             .flatMap { ImageType(BPGData: $0) }
     }
