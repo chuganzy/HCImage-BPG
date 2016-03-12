@@ -6,10 +6,10 @@
 #import "HCImage+BPG.h"
 #import <vector>
 #import <memory>
-#import "Internal/CG.hpp"
+#import "CG.hpp"
 
 extern "C" {
-#import <libbpg/libbpg.h>
+#import "libbpg.h"
 }
 
 class Decoder

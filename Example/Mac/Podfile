@@ -1,5 +1,0 @@
-platform :osx, '10.10'
-
-target 'Example' do
-  pod 'HCImage+BPG', :path => '../../'
-end
