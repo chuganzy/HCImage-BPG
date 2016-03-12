@@ -9,7 +9,11 @@
 import XCTest
 @testable import HCImageBPG
 
-typealias ImageType = NSImage
+#if os(iOS)
+    typealias ImageType = UIImage
+#elseif os(OSX)
+    typealias ImageType = NSImage
+#endif
 
 class Tests: XCTestCase {
     
@@ -24,11 +28,20 @@ class Tests: XCTestCase {
     func testDecodeImages() {
         (0...19).forEach { index in
             let name = String(format: "image-%05d", index)
-            let image = NSBundle(forClass: self.dynamicType)
-                .pathForResource(name, ofType: "bpg")
-                .flatMap { NSData(contentsOfFile: $0) }
-                .flatMap { ImageType(BPGData: $0) }
-            XCTAssertNotNil(image, name)
+            XCTAssertNotNil(decodeBPGWithName(name), name)
         }
+    }
+
+#if os(iOS)
+    func testDecodeAnimationImages() {
+        XCTAssertEqual(decodeBPGWithName("animation-00000")?.images?.count, 40)
+    }
+#endif
+    
+    private func decodeBPGWithName(name: String) -> ImageType? {
+        return NSBundle(forClass: self.dynamicType)
+            .pathForResource(name, ofType: "bpg")
+            .flatMap { NSData(contentsOfFile: $0) }
+            .flatMap { ImageType(BPGData: $0) }
     }
 }
