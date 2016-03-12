@@ -39,6 +39,10 @@
 		00383EA71C946A2D002321BA /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 00383E611C936E59002321BA /* Image.hpp */; };
 		00383EAB1C946A4D002321BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00383EAA1C946A4D002321BA /* CoreGraphics.framework */; };
 		00383EAD1C946A92002321BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00383EAC1C946A92002321BA /* Cocoa.framework */; };
+		00383EE91C9474D8002321BA /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00383EE81C9474D8002321BA /* Tests.swift */; };
+		00383EEA1C9474D8002321BA /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00383EE81C9474D8002321BA /* Tests.swift */; };
+		00383EEE1C9478CB002321BA /* image-001.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00383EED1C9478CB002321BA /* image-001.bpg */; };
+		00383EEF1C9478CB002321BA /* image-001.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00383EED1C9478CB002321BA /* image-001.bpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,9 @@
 		00383E8D1C9468A4002321BA /* HCImage+BPG Mac Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HCImage+BPG Mac Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383EAA1C946A4D002321BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		00383EAC1C946A92002321BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		00383EE31C9473E5002321BA /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		00383EE81C9474D8002321BA /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		00383EED1C9478CB002321BA /* image-001.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "image-001.bpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +156,7 @@
 		00383E181C9367A8002321BA /* HCImage+BPG */ = {
 			isa = PBXGroup;
 			children = (
-				00383E1B1C9367A8002321BA /* Info.plist */,
+				00383EEB1C9477FF002321BA /* Supporting Files */,
 				00383E541C93687F002321BA /* HCAttributes.h */,
 				00383E191C9367A8002321BA /* HCImage+BPG.h */,
 				00383E551C93687F002321BA /* HCImage.h */,
@@ -162,7 +169,9 @@
 		00383E241C9367A9002321BA /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				00383EEC1C94787F002321BA /* Resources */,
 				00383E271C9367A9002321BA /* Info.plist */,
+				00383EE81C9474D8002321BA /* Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -249,6 +258,23 @@
 				00383EAC1C946A92002321BA /* Cocoa.framework */,
 			);
 			name = Mac;
+			sourceTree = "<group>";
+		};
+		00383EEB1C9477FF002321BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00383EE31C9473E5002321BA /* module.modulemap */,
+				00383E1B1C9367A8002321BA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00383EEC1C94787F002321BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00383EED1C9478CB002321BA /* image-001.bpg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00383EEE1C9478CB002321BA /* image-001.bpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00383EEF1C9478CB002321BA /* image-001.bpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00383EE91C9474D8002321BA /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00383EEA1C9474D8002321BA /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,8 +555,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "./HCImage+BPG/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MODULEMAP_FILE = "./HCImage+BPG/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoppenichu.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -568,7 +600,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "./HCImage+BPG/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MODULEMAP_FILE = "./HCImage+BPG/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoppenichu.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -592,7 +626,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/ios",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -611,7 +644,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/ios",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -655,8 +687,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/mac",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG-Mac";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -678,8 +709,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/mac",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG-Mac";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -753,6 +783,7 @@
 				00383E971C9468A4002321BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00383E981C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG Mac Tests" */ = {
 			isa = XCConfigurationList;
@@ -761,6 +792,7 @@
 				00383E9A1C9468A4002321BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

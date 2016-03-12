@@ -1,0 +1,5 @@
+framework module HCImageBPG {
+    umbrella header "HCImage+BPG.h"
+    export *
+    module * { export * }
+}
