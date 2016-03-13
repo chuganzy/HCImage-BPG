@@ -7,6 +7,9 @@
 #import "HCImage.h"
 #import "HCAttributes.h"
 
+FOUNDATION_EXPORT const double HCImageBPGVersionNumber;
+FOUNDATION_EXPORT const unsigned char HCImageBPGVersionString[];
+
 @interface HCImage (BPG)
 + (HCImage * HC_NULLABLE)imageWithBPGData:(NSData * HC_NONNULL)data;
 @end
