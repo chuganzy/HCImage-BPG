@@ -34,6 +34,7 @@ class Tests: XCTestCase {
     
     func testDecodeInvalidImages() {
         XCTAssertNil(decodeBPGWithName("jpeg-00000", type: "jpg"))
+        XCTAssertNil(ImageType(BPGData: NSData(bytes: nil, length: 0)))
     }
     
     func testDecodeAnimationImages() {
