@@ -43,8 +43,7 @@ class Tests: XCTestCase {
         #if os(iOS)
             XCTAssertEqual(image?.images?.count, expectedCount)
         #elseif os(OSX)
-            let count = image?.representations
-                .first.flatMap { $0 as? NSBitmapImageRep }?
+            let count = (image?.representations.first as? NSBitmapImageRep)?
                 .valueForProperty(NSImageFrameCount) as? Int
             XCTAssertEqual(count, expectedCount)
         #endif
