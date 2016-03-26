@@ -85,6 +85,8 @@
 		00383F6D1C94841A002321BA /* animation-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00383F6B1C948417002321BA /* animation-00000.bpg */; };
 		0083A2B81C94C98F00FCA6FF /* jpeg-00000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */; };
 		0083A2B91C94C98F00FCA6FF /* jpeg-00000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */; };
+		008BF1201CA71FBF00B71259 /* broken-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 008BF11F1CA71FBF00B71259 /* broken-00000.bpg */; };
+		008BF1211CA71FBF00B71259 /* broken-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 008BF11F1CA71FBF00B71259 /* broken-00000.bpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +155,7 @@
 		00383F421C947DA7002321BA /* image-00019.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "image-00019.bpg"; sourceTree = "<group>"; };
 		00383F6B1C948417002321BA /* animation-00000.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "animation-00000.bpg"; sourceTree = "<group>"; };
 		0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jpeg-00000.jpg"; sourceTree = "<group>"; };
+		008BF11F1CA71FBF00B71259 /* broken-00000.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "broken-00000.bpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +338,7 @@
 		00383EEC1C94787F002321BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				008BF11F1CA71FBF00B71259 /* broken-00000.bpg */,
 				0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */,
 				00383F6B1C948417002321BA /* animation-00000.bpg */,
 				00383F2F1C947DA7002321BA /* image-00000.bpg */,
@@ -525,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00383F5D1C947DA7002321BA /* image-00013.bpg in Resources */,
+				008BF1201CA71FBF00B71259 /* broken-00000.bpg in Resources */,
 				00383F431C947DA7002321BA /* image-00000.bpg in Resources */,
 				00383F5F1C947DA7002321BA /* image-00014.bpg in Resources */,
 				00383F491C947DA7002321BA /* image-00003.bpg in Resources */,
@@ -561,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00383F5E1C947DA7002321BA /* image-00013.bpg in Resources */,
+				008BF1211CA71FBF00B71259 /* broken-00000.bpg in Resources */,
 				00383F441C947DA7002321BA /* image-00000.bpg in Resources */,
 				00383F601C947DA7002321BA /* image-00014.bpg in Resources */,
 				00383F4A1C947DA7002321BA /* image-00003.bpg in Resources */,

@@ -1,12 +1,57 @@
+[![Build Status](https://travis-ci.org/hoppenichu/HCImage-BPG.svg?branch=master)](https://travis-ci.org/hoppenichu/HCImage-BPG)
+
 # HCImage+BPG
 
 BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
 
-[![Build Status](https://travis-ci.org/hoppenichu/HCImage-BPG.svg?branch=master)](https://travis-ci.org/hoppenichu/HCImage-BPG)
+## Usage
+
+### iOS
+- Objective-C
+
+```objc
+NSData *data = ...;
+UIImage *image = [UIImage imageWithBPGData:data];
+```
+  
+- Swift
+
+```swift
+let data: NSData = ...
+let image: UIImage = UIImage(BPGData: data)
+```
+
+### Mac
+
+```objc
+NSData *data = ...;
+NSImage *image = [NSImage imageWithBPGData:data];
+```
+  
+- Swift
+
+```swift
+let data: NSData = ...
+let image: NSImage = NSImage(BPGData: data)
+```
+
+## Installation
+
+### CocoaPods
+
+```
+pod 'HCImage+BPG'
+```
+
+### Carthage
+
+```
+github "hoppenichu/HCImage+BPG"
+```
 
 ## License
 
-MIT
+MIT.
 
 ### libbpg
 
