@@ -128,7 +128,7 @@ private:
             if (bpg_decoder_get_line(this->_context, buffer + (y * this->_imageLineSize)) == 0) {
                 continue;
             }
-            delete buffer;
+            delete[] buffer;
             throw "bpg_decoder_get_line";
         }
         return buffer;
