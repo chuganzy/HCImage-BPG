@@ -4,6 +4,13 @@
 
 BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
 
+## Features
+
+- Supports OSX
+- Supports iOS
+- Supports animation
+- Supports nullability
+
 ## Usage
 
 ### iOS

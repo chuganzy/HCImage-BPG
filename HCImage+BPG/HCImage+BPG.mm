@@ -118,7 +118,7 @@ private:
     
     static void releaseImageData(void *info, const void *data, size_t size)
     {
-        delete (uint8_t *)data;
+        delete[] (uint8_t *)data;
     }
     
     uint8_t *getCurrentFrameBuffer() const
