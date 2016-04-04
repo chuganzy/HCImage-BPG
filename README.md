@@ -14,6 +14,7 @@ BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
 ## Usage
 
 ### iOS
+
 - Objective-C
 
 ```objc
@@ -29,6 +30,8 @@ let image: UIImage = UIImage(BPGData: data)
 ```
 
 ### Mac
+
+- Objective-C
 
 ```objc
 NSData *data = ...;
