@@ -26,7 +26,7 @@ UIImage *image = [UIImage imageWithBPGData:data];
 
 ```swift
 let data: NSData = ...
-let image: UIImage = UIImage(BPGData: data)
+let image: UIImage? = UIImage(BPGData: data)
 ```
 
 ### Mac
@@ -42,7 +42,7 @@ NSImage *image = [NSImage imageWithBPGData:data];
 
 ```swift
 let data: NSData = ...
-let image: NSImage = NSImage(BPGData: data)
+let image: NSImage? = NSImage(BPGData: data)
 ```
 
 ## Installation
