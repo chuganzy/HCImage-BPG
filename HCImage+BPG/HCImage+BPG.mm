@@ -37,6 +37,14 @@ public:
         this->_imageTotalSize = this->_imageLineSize * this->_imageInfo.height;
     }
     
+    ~Decoder()
+    {
+        if (this->_context) {
+            bpg_decoder_close(this->_context);
+            this->_context = nullptr;
+        }
+    }
+    
     HCImage *decode() const
     {
         const BPGDecoderOutputFormat fmt = this->_imageInfo.has_alpha ?
@@ -98,14 +106,6 @@ public:
 #endif
     }
     
-    ~Decoder()
-    {
-        if (this->_context) {
-            bpg_decoder_close(this->_context);
-            this->_context = nullptr;
-        }
-    }
-    
 private:
     CG::ColorSpace _colorSpace;
     BPGDecoderContext *_context;
@@ -139,8 +139,8 @@ private:
         CG::DataProvider provider = CG::DataProvider(nullptr,
                                                      this->getCurrentFrameBuffer(),
                                                      this->_imageTotalSize,
-                                                     this->releaseImageData
-                                                     );
+                                                     this->releaseImageData);
+        
         return std::make_shared<CG::Image>(this->_imageInfo.width,
                                            this->_imageInfo.height,
                                            8,
@@ -157,16 +157,20 @@ private:
     HCImage *cgImageToHCImage(const CG::Image &image) const
     {
 #if TARGET_OS_IPHONE
-        return [UIImage imageWithCGImage:image scale:this->_imageScale orientation:UIImageOrientationUp];
+        return [UIImage imageWithCGImage:image
+                                   scale:this->_imageScale
+                             orientation:UIImageOrientationUp];
 #else
-        return [[NSImage alloc] initWithCGImage:image size:NSMakeSize(this->_imageInfo.width, this->_imageInfo.height)];
+        return [[NSImage alloc] initWithCGImage:image
+                                           size:NSMakeSize(this->_imageInfo.width, this->_imageInfo.height)];
 #endif
     }
 };
 
 @implementation HCImage (BPG)
 
-+ (HCImage *)imageWithBPGData:(NSData *)data {
++ (HCImage *)imageWithBPGData:(NSData *)data
+{
     NSParameterAssert(data);
     try {
         Decoder decoder((uint8_t *)data.bytes, (int)data.length);
