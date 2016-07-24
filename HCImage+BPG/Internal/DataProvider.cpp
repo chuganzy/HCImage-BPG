@@ -18,7 +18,7 @@ DataProvider::DataProvider(void *info, const void *data, size_t size,
 
 DataProvider::~DataProvider()
 {
-    if (this->_ref != nullptr) {
+    if (this->_ref) {
         CGDataProviderRelease(this->_ref);
         this->_ref = nullptr;
     }
