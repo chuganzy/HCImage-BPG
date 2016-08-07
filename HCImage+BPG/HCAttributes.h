@@ -6,12 +6,9 @@
 #ifndef _HCAttributes_h
 #define _HCAttributes_h
 
-#if __has_feature(nullability)
-    #define HC_NULLABLE __nullable
-    #define HC_NONNULL __nonnull
-#else
-    #define HC_NULLABLE
-    #define HC_NONNULL
+#if !__has_feature(nullability)
+    #define __nullable
+    #define __nonnull
 #endif
 
 #endif /* _HCAttributes_h */
