@@ -9,6 +9,8 @@
 #if !__has_feature(nullability)
     #define __nullable
     #define __nonnull
+    #define NS_ASSUME_NONNULL_BEGIN
+    #define NS_ASSUME_NONNULL_END
 #endif
 
 #endif /* _HCAttributes_h */
