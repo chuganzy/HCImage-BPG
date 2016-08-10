@@ -56,7 +56,7 @@ pod 'HCImage+BPG'
 ### Carthage
 
 ```
-github "hoppenichu/HCImage+BPG"
+github "hoppenichu/HCImage-BPG"
 ```
 
 ## License
