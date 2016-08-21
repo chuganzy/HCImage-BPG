@@ -28,18 +28,18 @@ class Tests: XCTestCase {
     func testDecodeImages() {
         (0...19).forEach { index in
             let name = String(format: "image-%05d", index)
-            XCTAssertNotNil(decodeBPGWithName(name), name)
+            XCTAssertNotNil(decodeBPG(withName: name), name)
         }
     }
     
     func testDecodeInvalidImages() {
-        XCTAssertNil(decodeBPGWithName("broken-00000"))
-        XCTAssertNil(decodeBPGWithName("jpeg-00000", type: "jpg"))
+        XCTAssertNil(decodeBPG(withName: "broken-00000"))
+        XCTAssertNil(decodeBPG(withName: "jpeg-00000", ofType: "jpg"))
         XCTAssertNil(ImageType(BPGData: NSData(bytes: nil, length: 0)))
     }
     
     func testDecodeAnimationImages() {
-        let image = decodeBPGWithName("animation-00000")
+        let image = decodeBPG(withName: "animation-00000")
         let expectedCount = 40
         #if os(iOS)
             XCTAssertEqual(image?.images?.count, expectedCount)
@@ -51,10 +51,10 @@ class Tests: XCTestCase {
     }
     
     
-    private func decodeBPGWithName(name: String, type: String = "bpg") -> ImageType? {
+    private func decodeBPG(withName name: String, ofType type: String = "bpg") -> ImageType? {
         return NSBundle(forClass: self.dynamicType)
             .pathForResource(name, ofType: type)
-            .flatMap { NSData(contentsOfFile: $0) }
-            .flatMap { ImageType(BPGData: $0) }
+            .flatMap(NSData.init(contentsOfFile:))
+            .flatMap(ImageType.init(BPGData:))
     }
 }
