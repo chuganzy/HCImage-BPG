@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/hoppenichu/HCImage-BPG.svg?branch=master)](https://travis-ci.org/hoppenichu/HCImage-BPG)
+![CocoaPods](https://img.shields.io/cocoapods/v/HCImage+BPG.svg)
+![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)
+![Platform](https://img.shields.io/cocoapods/p/HCImage+BPG.svg)
 
 # HCImage+BPG
 
