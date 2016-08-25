@@ -110,7 +110,7 @@
 		00383E161C9367A8002321BA /* HCImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383E191C9367A8002321BA /* HCImage+BPG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HCImage+BPG.h"; sourceTree = "<group>"; };
 		00383E1B1C9367A8002321BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00383E201C9367A9002321BA /* HCImage+BPG iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HCImage+BPG iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00383E201C9367A9002321BA /* HCImageBPG.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCImageBPG.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383E271C9367A9002321BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00383E541C93687F002321BA /* HCAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAttributes.h; sourceTree = "<group>"; };
 		00383E551C93687F002321BA /* HCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCImage.h; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		00383E7A1C936F6D002321BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00383E7C1C936F75002321BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		00383E841C9468A4002321BA /* HCImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		00383E8D1C9468A4002321BA /* HCImage+BPG Mac Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HCImage+BPG Mac Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00383E8D1C9468A4002321BA /* HCImageBPG.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCImageBPG.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383EAA1C946A4D002321BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		00383EAC1C946A92002321BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		00383EE31C9473E5002321BA /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
@@ -212,9 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				00383E161C9367A8002321BA /* HCImageBPG.framework */,
-				00383E201C9367A9002321BA /* HCImage+BPG iOS Tests.xctest */,
+				00383E201C9367A9002321BA /* HCImageBPG.xctest */,
 				00383E841C9468A4002321BA /* HCImageBPG.framework */,
-				00383E8D1C9468A4002321BA /* HCImage+BPG Mac Tests.xctest */,
+				00383E8D1C9468A4002321BA /* HCImageBPG.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 			);
 			name = "HCImage+BPG iOS Tests";
 			productName = "HCImage+BPGTests";
-			productReference = 00383E201C9367A9002321BA /* HCImage+BPG iOS Tests.xctest */;
+			productReference = 00383E201C9367A9002321BA /* HCImageBPG.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		00383E831C9468A4002321BA /* HCImage+BPG Mac */ = {
@@ -470,7 +470,7 @@
 			);
 			name = "HCImage+BPG Mac Tests";
 			productName = "HCImage+BPG MacTests";
-			productReference = 00383E8D1C9468A4002321BA /* HCImage+BPG Mac Tests.xctest */;
+			productReference = 00383E8D1C9468A4002321BA /* HCImageBPG.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -690,7 +690,7 @@
 				MODULEMAP_FILE = "./HCImage+BPG/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoppenichu.HCImageBPG;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.ganzy.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -734,7 +734,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MODULEMAP_FILE = "./HCImage+BPG/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hoppenichu.HCImageBPG;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.ganzy.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -786,8 +786,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPGTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -798,8 +796,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPGTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -856,8 +852,6 @@
 				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG-MacTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -872,8 +866,6 @@
 				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hoppenichu.HCImage-BPG-MacTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
 			name = Release;
