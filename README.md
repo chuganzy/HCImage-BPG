@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hoppenichu/HCImage-BPG.svg?branch=master)](https://travis-ci.org/hoppenichu/HCImage-BPG)
+[![Build Status](https://travis-ci.org/chuganzy/HCImage-BPG.svg?branch=master)](https://travis-ci.org/chuganzy/HCImage-BPG)
 ![CocoaPods](https://img.shields.io/cocoapods/v/HCImage+BPG.svg)
 ![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)
 ![Platform](https://img.shields.io/cocoapods/p/HCImage+BPG.svg)
@@ -24,7 +24,7 @@ BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
 NSData *data = ...;
 UIImage *image = [UIImage imageWithBPGData:data];
 ```
-  
+
 - Swift
 
 ```swift
@@ -40,7 +40,7 @@ let image: UIImage? = UIImage(BPGData: data)
 NSData *data = ...;
 NSImage *image = [NSImage imageWithBPGData:data];
 ```
-  
+
 - Swift
 
 ```swift
@@ -59,7 +59,7 @@ pod 'HCImage+BPG'
 ### Carthage
 
 ```
-github "hoppenichu/HCImage-BPG"
+github "chuganzy/HCImage-BPG"
 ```
 
 ## License
