@@ -484,9 +484,11 @@
 				TargetAttributes = {
 					00383E151C9367A8002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					00383E1F1C9367A9002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 					00383E831C9468A4002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -759,6 +761,7 @@
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/ios",
 				);
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -777,6 +780,7 @@
 					"$(PROJECT_DIR)/HCImage+BPG/Internal/libbpg/lib/ios",
 				);
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -788,6 +792,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "HCImageBPG-Tests";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -798,6 +803,7 @@
 				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "HCImageBPG-Tests";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

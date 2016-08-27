@@ -35,7 +35,7 @@ class Tests: XCTestCase {
     func testDecodeInvalidImages() {
         XCTAssertNil(decodeBPG(withName: "broken-00000"))
         XCTAssertNil(decodeBPG(withName: "jpeg-00000", ofType: "jpg"))
-        XCTAssertNil(ImageType(BPGData: NSData(bytes: nil, length: 0)))
+        XCTAssertNil(ImageType(bpgData: Data(bytes: [])))
     }
     
     func testDecodeAnimationImages() {
@@ -52,9 +52,9 @@ class Tests: XCTestCase {
     
     
     private func decodeBPG(withName name: String, ofType type: String = "bpg") -> ImageType? {
-        return NSBundle(forClass: self.dynamicType)
-            .pathForResource(name, ofType: type)
-            .flatMap(NSData.init(contentsOfFile:))
-            .flatMap(ImageType.init(BPGData:))
+        return Bundle(for: type(of: self))
+            .url(forResource: name, withExtension: type)
+            .flatMap { try? Data(contentsOf: $0) }
+            .flatMap(ImageType.init(bpgData:))
     }
 }
