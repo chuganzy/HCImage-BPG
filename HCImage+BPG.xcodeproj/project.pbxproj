@@ -437,9 +437,9 @@
 			productReference = 00383E201C9367A9002321BA /* HCImageBPG-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		00383E831C9468A4002321BA /* HCImage+BPG Mac */ = {
+		00383E831C9468A4002321BA /* HCImage+BPG macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00383E951C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG Mac" */;
+			buildConfigurationList = 00383E951C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG macOS" */;
 			buildPhases = (
 				00383E7F1C9468A4002321BA /* Sources */,
 				00383E801C9468A4002321BA /* Frameworks */,
@@ -450,14 +450,14 @@
 			);
 			dependencies = (
 			);
-			name = "HCImage+BPG Mac";
+			name = "HCImage+BPG macOS";
 			productName = "HCImage+BPG Mac";
 			productReference = 00383E841C9468A4002321BA /* HCImageBPG.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		00383E8C1C9468A4002321BA /* HCImage+BPG Mac Tests */ = {
+		00383E8C1C9468A4002321BA /* HCImage+BPG macOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00383E981C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG Mac Tests" */;
+			buildConfigurationList = 00383E981C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG macOS Tests" */;
 			buildPhases = (
 				00383E891C9468A4002321BA /* Sources */,
 				00383E8A1C9468A4002321BA /* Frameworks */,
@@ -468,7 +468,7 @@
 			dependencies = (
 				00383E901C9468A4002321BA /* PBXTargetDependency */,
 			);
-			name = "HCImage+BPG Mac Tests";
+			name = "HCImage+BPG macOS Tests";
 			productName = "HCImage+BPG MacTests";
 			productReference = 00383E8D1C9468A4002321BA /* HCImageBPG-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -509,9 +509,9 @@
 			projectRoot = "";
 			targets = (
 				00383E151C9367A8002321BA /* HCImage+BPG iOS */,
-				00383E831C9468A4002321BA /* HCImage+BPG Mac */,
+				00383E831C9468A4002321BA /* HCImage+BPG macOS */,
 				00383E1F1C9367A9002321BA /* HCImage+BPG iOS Tests */,
-				00383E8C1C9468A4002321BA /* HCImage+BPG Mac Tests */,
+				00383E8C1C9468A4002321BA /* HCImage+BPG macOS Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -642,7 +642,7 @@
 		};
 		00383E901C9468A4002321BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 00383E831C9468A4002321BA /* HCImage+BPG Mac */;
+			target = 00383E831C9468A4002321BA /* HCImage+BPG macOS */;
 			targetProxy = 00383E8F1C9468A4002321BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -904,7 +904,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00383E951C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG Mac" */ = {
+		00383E951C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00383E961C9468A4002321BA /* Debug */,
@@ -913,7 +913,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00383E981C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG Mac Tests" */ = {
+		00383E981C9468A4002321BA /* Build configuration list for PBXNativeTarget "HCImage+BPG macOS Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00383E991C9468A4002321BA /* Debug */,

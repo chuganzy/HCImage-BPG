@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00383E1F1C9367A9002321BA"
-               BuildableName = "HCImage+BPG iOS Tests.xctest"
+               BuildableName = "HCImageBPG-Tests.xctest"
                BlueprintName = "HCImage+BPG iOS Tests"
                ReferencedContainer = "container:HCImage+BPG.xcodeproj">
             </BuildableReference>
