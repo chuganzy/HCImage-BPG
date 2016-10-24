@@ -28,18 +28,18 @@ class Tests: XCTestCase {
     func testDecodeImages() {
         (0...19).forEach { index in
             let name = String(format: "image-%05d", index)
-            XCTAssertNotNil(decodeBPG(withName: name), name)
+            XCTAssertNotNil(decodeBPG(forResource: name), name)
         }
     }
     
     func testDecodeInvalidImages() {
-        XCTAssertNil(decodeBPG(withName: "broken-00000"))
-        XCTAssertNil(decodeBPG(withName: "jpeg-00000", ofType: "jpg"))
+        XCTAssertNil(decodeBPG(forResource: "broken-00000"))
+        XCTAssertNil(decodeBPG(forResource: "jpeg-00000", withExtension: "jpg"))
         XCTAssertNil(ImageType(bpgData: Data(bytes: [])))
     }
     
     func testDecodeAnimationImages() {
-        let image = decodeBPG(withName: "animation-00000")
+        let image = decodeBPG(forResource: "animation-00000")
         let expectedCount = 40
         #if os(iOS)
             XCTAssertEqual(image?.images?.count, expectedCount)
@@ -50,11 +50,11 @@ class Tests: XCTestCase {
         #endif
     }
     
-    
-    private func decodeBPG(withName name: String, ofType type: String = "bpg") -> ImageType? {
-        return Bundle(for: type(of: self))
-            .url(forResource: name, withExtension: type)
+    private func decodeBPG(forResource name: String, withExtension ext: String = "bpg") -> ImageType? {
+        let data = Bundle(for: type(of: self))
+            .url(forResource: name, withExtension: ext)
             .flatMap { try? Data(contentsOf: $0) }
-            .flatMap(ImageType.init(bpgData:))
+        XCTAssertNotNil(data)
+        return data.flatMap(ImageType.init(bpgData:))
     }
 }
