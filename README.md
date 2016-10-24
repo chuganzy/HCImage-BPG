@@ -5,11 +5,11 @@
 
 # HCImage+BPG
 
-BPG (http://bellard.org/bpg/) decoder for iOS and OS X.
+BPG (http://bellard.org/bpg/) decoder for iOS and macOS.
 
 ## Features
 
-- Supports OSX
+- Supports macOS
 - Supports iOS
 - Supports animation
 - Supports nullability
@@ -32,7 +32,7 @@ let data: NSData = ...
 let image: UIImage? = UIImage(BPGData: data)
 ```
 
-### Mac
+### macOS
 
 - Objective-C
 

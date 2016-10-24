@@ -15,11 +15,11 @@ extern "C" {
 class Decoder
 {
 public:
-    Decoder(const uint8_t *buffer, int length) :
-    _colorSpace(CG::ColorSpace::CreateDeviceRGB())
-    ,_context(bpg_decoder_open())
+    Decoder(const uint8_t *buffer, int length)
+    : _colorSpace(CG::ColorSpace::CreateDeviceRGB())
+    , _context(bpg_decoder_open())
 #if TARGET_OS_IPHONE
-    ,_imageScale([UIScreen mainScreen].scale)
+    , _imageScale([UIScreen mainScreen].scale)
 #endif
     {
         if (!this->_context) {

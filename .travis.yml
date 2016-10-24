@@ -2,8 +2,8 @@ language: objective-c
 osx_image: xcode8
 env:
   matrix:
-    - FASTLANE_ENV=ios
-    - FASTLANE_ENV=mac
+    - FASTLANE_ENV=iOS
+    - FASTLANE_ENV=macOS
 script:
   - bundle exec pod lib lint
   - bundle exec fastlane test --env $FASTLANE_ENV
