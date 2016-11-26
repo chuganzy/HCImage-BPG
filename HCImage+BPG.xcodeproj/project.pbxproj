@@ -484,9 +484,11 @@
 				TargetAttributes = {
 					00383E151C9367A8002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 					};
 					00383E1F1C9367A9002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 					};
 					00383E831C9468A4002321BA = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -693,6 +695,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ganzy.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -737,6 +740,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ganzy.HCImageBPG;
 				PRODUCT_NAME = HCImageBPG;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
