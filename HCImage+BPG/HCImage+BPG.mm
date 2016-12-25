@@ -8,6 +8,8 @@
 #import <memory>
 #import "CG.hpp"
 
+NSString *const HCImageBPGErrorDomain = @"HCImageBPGErrorDomain";
+
 extern "C" {
 #import "libbpg.h"
 }
@@ -23,15 +25,15 @@ public:
 #endif
     {
         if (!this->_context) {
-            throw "bpg_decoder_open";
+            throw HCImageBPGErrorCodeOutOfMemory;
         }
         if (bpg_decoder_decode(this->_context, buffer, length) != 0) {
             bpg_decoder_close(this->_context);
-            throw "bpg_decoder_decode";
+            throw HCImageBPGErrorCodeInvalidFormat;
         }
         if (bpg_decoder_get_info(this->_context, &this->_imageInfo) != 0) {
             bpg_decoder_close(this->_context);
-            throw "bpg_decoder_get_info";
+            throw HCImageBPGErrorCodeInvalidFormat;
         }
         this->_imageLineSize = (this->_imageInfo.has_alpha ? 4 : 3) * this->_imageInfo.width;
         this->_imageTotalSize = this->_imageLineSize * this->_imageInfo.height;
@@ -50,7 +52,7 @@ public:
         const BPGDecoderOutputFormat fmt = this->_imageInfo.has_alpha ?
         BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
         if (bpg_decoder_start(this->_context, fmt) != 0) {
-            throw "bpg_decoder_start";
+            throw HCImageBPGErrorCodeInvalidFormat;
         }
         if (!this->_imageInfo.has_animation) {
             return this->cgImageToHCImage(*this->getCurrentFrameCGImage());
@@ -129,7 +131,7 @@ private:
                 continue;
             }
             delete[] buffer;
-            throw "bpg_decoder_get_line";
+            throw HCImageBPGErrorCodeInvalidFormat;
         }
         return buffer;
     }
@@ -169,15 +171,30 @@ private:
 
 @implementation HCImage (BPG)
 
-+ (HCImage *)imageWithBPGData:(NSData *)data
++ (HCImage * __nullable)imageWithBPGData:(NSData *)data
+                                   error:(NSError **)error
 {
     NSParameterAssert(data);
     try {
         Decoder decoder((uint8_t *)data.bytes, (int)data.length);
         return decoder.decode();
-    } catch (...) {
+    } catch (HCImageBPGErrorCode code) {
+        if (error) {
+            *error = [NSError errorWithDomain:HCImageBPGErrorDomain
+                                        code:code
+                                    userInfo:nil];
+        }
         return nil;
     }
+}
+
+@end
+
+@implementation HCImage (Deprecated)
+
++ (HCImage * __nullable)imageWithBPGData:(NSData *)data
+{
+    return [self imageWithBPGData:data error:nullptr];
 }
 
 @end
