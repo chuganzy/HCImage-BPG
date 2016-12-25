@@ -38,7 +38,6 @@ final class Tests: XCTestCase {
                 try block()
             } catch let error as NSError where error.domain == HCImageBPGErrorDomain {
                 XCTAssertEqual(error.code, code.rawValue)
-                
             } catch {
                 XCTFail()
             }
