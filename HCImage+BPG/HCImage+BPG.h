@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXTERN NSString *const HCImageBPGErrorDomain;
 
-typedef NS_ENUM(NSUInteger, HCImageBPGErrorCode) {
+typedef NS_ENUM(NSInteger, HCImageBPGErrorCode) {
     HCImageBPGErrorCodeInvalidFormat,
     HCImageBPGErrorCodeOutOfMemory,
 };
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, HCImageBPGErrorCode) {
 
 @interface HCImage (Deprecated)
 
-+ (HCImage * __nullable)imageWithBPGData:(NSData *)data DEPRECATED_ATTRIBUTE;
++ (HCImage * __nullable)imageWithBPGData:(NSData *)data DEPRECATED_ATTRIBUTE __SWIFT_UNAVAILABLE;
 
 @end
 
