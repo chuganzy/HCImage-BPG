@@ -22,14 +22,14 @@ BPG (http://bellard.org/bpg/) decoder for iOS and macOS.
 
 ```objc
 NSData *data = ...;
-UIImage *image = [UIImage imageWithBPGData:data];
+UIImage *image = [UIImage imageWithBPGData:data error:NULL];
 ```
 
 - Swift
 
 ```swift
 let data: NSData = ...
-let image: UIImage? = UIImage(BPGData: data)
+let image: UIImage? = try? UIImage(BPGData: data)
 ```
 
 ### macOS
@@ -38,14 +38,14 @@ let image: UIImage? = UIImage(BPGData: data)
 
 ```objc
 NSData *data = ...;
-NSImage *image = [NSImage imageWithBPGData:data];
+NSImage *image = [NSImage imageWithBPGData:data error:NULL];
 ```
 
 - Swift
 
 ```swift
 let data: NSData = ...
-let image: NSImage? = NSImage(BPGData: data)
+let image: NSImage? = try? NSImage(BPGData: data)
 ```
 
 ## Installation
