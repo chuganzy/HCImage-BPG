@@ -18,7 +18,7 @@ public:
     Decoder(const uint8_t *buffer, int length)
     : _colorSpace(CG::ColorSpace::CreateDeviceRGB())
     , _context(bpg_decoder_open())
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
     , _imageScale([UIScreen mainScreen].scale)
 #endif
     {
@@ -71,7 +71,7 @@ public:
             });
         } while (bpg_decoder_start(this->_context, fmt) == 0);
         
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
         NSMutableArray *images = [NSMutableArray arrayWithCapacity:infos.size()];
         NSTimeInterval totalDuration = 0;
         for (auto info : infos) {
@@ -112,7 +112,7 @@ private:
     BPGImageInfo _imageInfo;
     size_t _imageLineSize;
     size_t _imageTotalSize;
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
     CGFloat _imageScale;
 #endif
     
@@ -156,7 +156,7 @@ private:
     
     HCImage *cgImageToHCImage(const CG::Image &image) const
     {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IOS
         return [UIImage imageWithCGImage:image
                                    scale:this->_imageScale
                              orientation:UIImageOrientationUp];
