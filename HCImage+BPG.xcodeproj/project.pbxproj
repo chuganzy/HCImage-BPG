@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001961BE1E1B03ED00544EF6 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001961BD1E1B03ED00544EF6 /* AppKit.framework */; };
+		001961C01E1B03FD00544EF6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001961BF1E1B03FD00544EF6 /* CoreGraphics.framework */; };
 		00383E1A1C9367A8002321BA /* HCImage+BPG.h in Headers */ = {isa = PBXBuildFile; fileRef = 00383E191C9367A8002321BA /* HCImage+BPG.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00383E211C9367A9002321BA /* HCImageBPG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00383E161C9367A8002321BA /* HCImageBPG.framework */; };
 		00383E571C93687F002321BA /* HCAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 00383E541C93687F002321BA /* HCAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,8 +39,6 @@
 		00383EA51C946A2D002321BA /* DataProvider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 00383E5F1C936E59002321BA /* DataProvider.hpp */; };
 		00383EA61C946A2D002321BA /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00383E601C936E59002321BA /* Image.cpp */; };
 		00383EA71C946A2D002321BA /* Image.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 00383E611C936E59002321BA /* Image.hpp */; };
-		00383EAB1C946A4D002321BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00383EAA1C946A4D002321BA /* CoreGraphics.framework */; };
-		00383EAD1C946A92002321BA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00383EAC1C946A92002321BA /* Cocoa.framework */; };
 		00383EE91C9474D8002321BA /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00383EE81C9474D8002321BA /* Tests.swift */; };
 		00383EEA1C9474D8002321BA /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00383EE81C9474D8002321BA /* Tests.swift */; };
 		00383F431C947DA7002321BA /* image-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 00383F2F1C947DA7002321BA /* image-00000.bpg */; };
@@ -107,6 +107,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001961BD1E1B03ED00544EF6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		001961BF1E1B03FD00544EF6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		00383E161C9367A8002321BA /* HCImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383E191C9367A8002321BA /* HCImage+BPG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HCImage+BPG.h"; sourceTree = "<group>"; };
 		00383E1B1C9367A8002321BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,8 +131,6 @@
 		00383E7C1C936F75002321BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		00383E841C9468A4002321BA /* HCImageBPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HCImageBPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		00383E8D1C9468A4002321BA /* HCImageBPG-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HCImageBPG-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00383EAA1C946A4D002321BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		00383EAC1C946A92002321BA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		00383EE31C9473E5002321BA /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		00383EE81C9474D8002321BA /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		00383F2F1C947DA7002321BA /* image-00000.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "image-00000.bpg"; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00383EAB1C946A4D002321BA /* CoreGraphics.framework in Frameworks */,
-				00383EAD1C946A92002321BA /* Cocoa.framework in Frameworks */,
+				001961C01E1B03FD00544EF6 /* CoreGraphics.framework in Frameworks */,
+				001961BE1E1B03ED00544EF6 /* AppKit.framework in Frameworks */,
 				00383E9B1C94696E002321BA /* libbpg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,8 +320,8 @@
 		00383EA91C946A40002321BA /* Mac */ = {
 			isa = PBXGroup;
 			children = (
-				00383EAA1C946A4D002321BA /* CoreGraphics.framework */,
-				00383EAC1C946A92002321BA /* Cocoa.framework */,
+				001961BF1E1B03FD00544EF6 /* CoreGraphics.framework */,
+				001961BD1E1B03ED00544EF6 /* AppKit.framework */,
 			);
 			name = Mac;
 			sourceTree = "<group>";

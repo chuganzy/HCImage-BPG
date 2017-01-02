@@ -7,6 +7,9 @@
 #import <vector>
 #import <memory>
 #import "CG.hpp"
+#if TARGET_OS_IOS
+#import <UIKit/UIScreen.h>
+#endif
 
 extern "C" {
 #import "libbpg.h"
