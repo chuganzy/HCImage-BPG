@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.private_header_files   = 'HCImage+BPG/Internal/**/*.{h,hpp}'
   s.osx.vendored_libraries = 'HCImage+BPG/Internal/libbpg/lib/mac/*.a'
   s.ios.vendored_libraries = 'HCImage+BPG/Internal/libbpg/lib/ios/*.a'
-  s.osx.framework          = 'Cocoa', 'CoreGraphics'
-  s.ios.framework          = 'UIKit', 'CoreGraphics'
+  s.osx.framework          = 'AppKit', 'CoreGraphics'
+  s.ios.framework          = 'UIKit',  'CoreGraphics'
   s.library                = 'c++'
 end
