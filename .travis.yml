@@ -1,5 +1,7 @@
 language: objective-c
 osx_image: xcode8.1
+cache:
+  - bundler
 env:
   matrix:
     - FASTLANE_ENV=iOS
