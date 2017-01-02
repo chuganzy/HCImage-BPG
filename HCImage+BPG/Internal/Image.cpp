@@ -1,9 +1,6 @@
 //
-//  Image.cpp
-//  Pods
-//
-//  Created by Takeru Chuganji on 2/21/16.
-//
+// Created by Takeru Chuganji on 12/21/14.
+// Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
 #include "Image.hpp"
