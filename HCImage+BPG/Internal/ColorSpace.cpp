@@ -1,9 +1,6 @@
 //
-//  ColorSpace.cpp
-//  Pods
-//
-//  Created by Takeru Chuganji on 2/21/16.
-//
+// Created by Takeru Chuganji on 12/21/14.
+// Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
 #include "ColorSpace.hpp"
@@ -12,16 +9,12 @@ using namespace CG;
 
 ColorSpace ColorSpace::CreateDeviceRGB()
 {
-    CGColorSpaceRef ref = CGColorSpaceCreateDeviceRGB();
-    ColorSpace space = ColorSpace(ref);
-    CGColorSpaceRelease(ref);
-    return space;
+    return CGColorSpaceCreateDeviceRGB();
 }
 
 ColorSpace::ColorSpace(CGColorSpaceRef ref)
 : _ref(ref)
 {
-    CGColorSpaceRetain(ref);
 }
 
 ColorSpace::~ColorSpace()
