@@ -12,16 +12,12 @@ using namespace CG;
 
 ColorSpace ColorSpace::CreateDeviceRGB()
 {
-    CGColorSpaceRef ref = CGColorSpaceCreateDeviceRGB();
-    ColorSpace space = ColorSpace(ref);
-    CGColorSpaceRelease(ref);
-    return space;
+    return CGColorSpaceCreateDeviceRGB();
 }
 
 ColorSpace::ColorSpace(CGColorSpaceRef ref)
 : _ref(ref)
 {
-    CGColorSpaceRetain(ref);
 }
 
 ColorSpace::~ColorSpace()
