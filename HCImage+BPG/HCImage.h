@@ -6,12 +6,16 @@
 #ifndef _HCImage_h
 #define _HCImage_h
 
-#if TARGET_OS_IPHONE
-    #import <UIKit/UIKit.h>
-    #define HCImage UIImage
+#if TARGET_OS_IOS
+
+#import <UIKit/UIImage.h>
+@compatibility_alias HCImage UIImage;
+
 #else
-    #import <Cocoa/Cocoa.h>
-    #define HCImage NSImage
+
+#import <AppKit/NSImage.h>
+@compatibility_alias HCImage NSImage;
+
 #endif
 
 #endif /* _HCImage_h */
