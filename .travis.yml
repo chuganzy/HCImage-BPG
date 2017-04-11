@@ -7,5 +7,4 @@ env:
     - FASTLANE_ENV=iOS
     - FASTLANE_ENV=macOS
 script:
-  - bundle exec pod lib lint
   - bundle exec fastlane test --env $FASTLANE_ENV
