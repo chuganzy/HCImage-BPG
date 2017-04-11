@@ -1,3 +1,7 @@
 lane :test do
   scan
+  carthage(
+    command: 'build',
+    no_skip_current: true,
+  )
 end
