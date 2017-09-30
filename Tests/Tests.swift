@@ -28,7 +28,7 @@ final class Tests: XCTestCase {
     func testDecodeImages() {
         (0...19).forEach { index in
             let name = String(format: "image-%05d", index)
-            XCTAssertNotNil(decodeBPG(forResource: name), name)
+            XCTAssertNotNil(decodeBPG(forResource: name))
         }
     }
     
@@ -49,7 +49,12 @@ final class Tests: XCTestCase {
             XCTAssertEqual(count, expectedCount)
         #endif
     }
-    
+
+    func testDecodePerformance() {
+        measure {
+            XCTAssertNotNil(decodeBPG(forResource: "image-00000"))
+        }
+    }
     
     private func decodeBPG(forResource res: String, withExtension ext: String = "bpg") -> ImageType? {
         return Bundle(for: type(of: self))
