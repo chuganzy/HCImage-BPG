@@ -78,7 +78,9 @@ public:
         }
 
         BPGImageInfo info;
-        if (!_context.getInfo(&info)) { return nil; }
+        if (!_context.getInfo(&info)) {
+            return nil;
+        }
 
         auto format = info.has_alpha ? BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
 
@@ -86,7 +88,9 @@ public:
             return processAnimated(info, format);
         }
 
-        if (!_context.start(format)) { return nil; }
+        if (!_context.start(format)) {
+            return nil;
+        }
 
         return convertCGImage(*createCurrentFrameImage(info), info);
     }
@@ -172,7 +176,9 @@ private:
         auto lineLength = info.width * bytesPerPixel;
         auto buffer = new uint8_t[lineLength * info.height];
         for (auto y = 0; y < info.height; y++) {
-            if (!_context.getLine(buffer + lineLength * y)) { break; }
+            if (!_context.getLine(buffer + lineLength * y)) {
+                break;
+            }
         }
 
         CG::DataProvider provider(nullptr,
