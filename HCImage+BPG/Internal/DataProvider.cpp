@@ -15,13 +15,13 @@ DataProvider::DataProvider(void *info, const void *data, size_t size,
 
 DataProvider::~DataProvider()
 {
-    if (this->_ref) {
-        CGDataProviderRelease(this->_ref);
-        this->_ref = nullptr;
+    if (_ref) {
+        CGDataProviderRelease(_ref);
+        _ref = nullptr;
     }
 }
 
 DataProvider::operator CGDataProviderRef() const
 {
-    return this->_ref;
+    return _ref;
 }

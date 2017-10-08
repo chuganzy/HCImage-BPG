@@ -25,13 +25,13 @@ Image::Image(size_t width, size_t height,
 
 Image::~Image()
 {
-    if (this->_ref) {
-        CGImageRelease(this->_ref);
-        this->_ref = nullptr;
+    if (_ref) {
+        CGImageRelease(_ref);
+        _ref = nullptr;
     }
 }
 
 Image::operator CGImageRef() const
 {
-    return this->_ref;
+    return _ref;
 }
