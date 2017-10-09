@@ -83,16 +83,17 @@ public:
         }
 
         auto format = info.has_alpha ? BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
+        auto scale = getScale();
 
         if (info.has_animation) {
-            return processAnimated(info, format);
+            return processAnimated(info, format, scale);
         }
 
         if (!_context.start(format)) {
             return nil;
         }
 
-        return convertCGImage(*createCurrentFrameImage(info), info);
+        return convertCGImage(*createCurrentFrameImage(info), info, scale);
     }
 
 private:
@@ -104,11 +105,20 @@ private:
         delete[] (uint8_t *)data;
     }
 
-    HCImage *convertCGImage(const CG::Image& image, BPGImageInfo info) const
+    static CGFloat getScale()
+    {
+#if TARGET_OS_IOS
+        return UIScreen.mainScreen.scale;
+#else
+        return 1;
+#endif
+    }
+
+    static HCImage *convertCGImage(const CG::Image& image, BPGImageInfo info, CGFloat scale)
     {
 #if TARGET_OS_IOS
         return [UIImage imageWithCGImage:image
-                            scale:UIScreen.mainScreen.scale
+                            scale:scale
                       orientation:UIImageOrientationUp];
 #else
         return [[NSImage alloc] initWithCGImage:image
@@ -116,7 +126,7 @@ private:
 #endif
     }
 
-    HCImage *processAnimated(BPGImageInfo info, BPGDecoderOutputFormat format) const
+    HCImage *processAnimated(BPGImageInfo info, BPGDecoderOutputFormat format, CGFloat scale) const
     {
 #if TARGET_OS_IOS
         auto images = [NSMutableArray array];
@@ -125,7 +135,7 @@ private:
             int num, den;
             _context.getFrameDuration(&num, &den);
             totalDuration += (NSTimeInterval)num / den;
-            [images addObject:convertCGImage(*createCurrentFrameImage(info), info)];
+            [images addObject:convertCGImage(*createCurrentFrameImage(info), info, scale)];
         }
         return [UIImage animatedImageWithImages:images duration:totalDuration];
 #else
