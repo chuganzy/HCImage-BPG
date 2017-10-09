@@ -19,13 +19,12 @@ ColorSpace::ColorSpace(CGColorSpaceRef ref)
 
 ColorSpace::~ColorSpace()
 {
-    if (this->_ref) {
-        CGColorSpaceRelease(this->_ref);
-        this->_ref = nullptr;
+    if (_ref) {
+        CGColorSpaceRelease(_ref);
     }
 }
 
 ColorSpace::operator CGColorSpaceRef() const
 {
-    return this->_ref;
+    return _ref;
 }

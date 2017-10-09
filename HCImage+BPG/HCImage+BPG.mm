@@ -15,172 +15,209 @@ extern "C" {
 #import "libbpg.h"
 }
 
-class Decoder
+// MARK:- BPG
+namespace BPG
+{
+    // MARK: Context
+    class Context
+    {
+    public:
+        Context(): _context(bpg_decoder_open())
+        {
+        }
+
+        ~Context()
+        {
+            if (_context) {
+                bpg_decoder_close(_context);
+            }
+        }
+
+        bool decode(const uint8_t *buffer, int length) const
+        {
+            return bpg_decoder_decode(_context, buffer, length) == 0;
+        }
+
+        bool start(BPGDecoderOutputFormat format) const
+        {
+            return bpg_decoder_start(_context, format) == 0;
+        }
+
+        bool getInfo(BPGImageInfo *info) const
+        {
+            return bpg_decoder_get_info(_context, info) == 0;
+        }
+
+        void getFrameDuration(int *pnum, int *pden) const
+        {
+            bpg_decoder_get_frame_duration(_context, pnum, pden);
+        }
+
+        bool getLine(void *buffer) const
+        {
+            return bpg_decoder_get_line(_context, buffer) == 0;
+        }
+
+    private:
+        BPGDecoderContext *_context;
+    };
+}
+
+// MARK:- ImageProcessor
+class ImageProcessor
 {
 public:
-    Decoder(const uint8_t *buffer, int length)
-    : _colorSpace(CG::ColorSpace::CreateDeviceRGB())
-    , _context(bpg_decoder_open())
-#if TARGET_OS_IOS
-    , _imageScale([UIScreen mainScreen].scale)
-#endif
+    ImageProcessor(): _colorSpace(CG::ColorSpace::CreateDeviceRGB())
     {
-        if (!this->_context) {
-            throw "bpg_decoder_open";
-        }
-        if (bpg_decoder_decode(this->_context, buffer, length) != 0) {
-            bpg_decoder_close(this->_context);
-            throw "bpg_decoder_decode";
-        }
-        if (bpg_decoder_get_info(this->_context, &this->_imageInfo) != 0) {
-            bpg_decoder_close(this->_context);
-            throw "bpg_decoder_get_info";
-        }
-        this->_imageLineSize = (this->_imageInfo.has_alpha ? 4 : 3) * this->_imageInfo.width;
-        this->_imageTotalSize = this->_imageLineSize * this->_imageInfo.height;
     }
-    
-    ~Decoder()
+
+    HCImage *process(NSData *data) const
     {
-        if (this->_context) {
-            bpg_decoder_close(this->_context);
-            this->_context = nullptr;
+        if (!_context.decode((uint8_t *)data.bytes, (int)data.length)) {
+            return nil;
         }
+
+        BPGImageInfo info;
+        if (!_context.getInfo(&info)) {
+            return nil;
+        }
+
+        auto format = info.has_alpha ? BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
+        auto scale = getScale();
+
+        if (info.has_animation) {
+            return processAnimated(info, format, scale);
+        }
+
+        if (!_context.start(format)) {
+            return nil;
+        }
+
+        return convertCGImage(*createCurrentFrameImage(info), info, scale);
     }
-    
-    HCImage *decode() const
-    {
-        const BPGDecoderOutputFormat fmt = this->_imageInfo.has_alpha ?
-        BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
-        if (bpg_decoder_start(this->_context, fmt) != 0) {
-            throw "bpg_decoder_start";
-        }
-        if (!this->_imageInfo.has_animation) {
-            return this->cgImageToHCImage(*this->getCurrentFrameCGImage());
-        }
-        
-        struct FrameInfo {
-            std::shared_ptr<CG::Image> image;
-            NSTimeInterval duration;
-        };
-        
-        std::vector<FrameInfo> infos;
-        do {
-            int num, den;
-            bpg_decoder_get_frame_duration(this->_context, &num, &den);
-            infos.push_back({
-                this->getCurrentFrameCGImage(),
-                (NSTimeInterval)num / den
-            });
-        } while (bpg_decoder_start(this->_context, fmt) == 0);
-        
-#if TARGET_OS_IOS
-        NSMutableArray *images = [NSMutableArray arrayWithCapacity:infos.size()];
-        NSTimeInterval totalDuration = 0;
-        for (auto info : infos) {
-            totalDuration += info.duration;
-            [images addObject:this->cgImageToHCImage(*info.image)];
-        }
-        return [UIImage animatedImageWithImages:images duration:totalDuration];
-        
-#else
-        NSMutableData *data = [NSMutableData data];
-        CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)data,
-                                                                             kUTTypeGIF,
-                                                                             infos.size(),
-                                                                             nullptr);
-        NSDictionary *destProperties = @{
-                                         (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
-                                                 (__bridge NSString *)kCGImagePropertyGIFLoopCount : @(this->_imageInfo.loop_count),
-                                                 }
-                                         };
-        CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)destProperties);
-        for (auto info : infos) {
-            NSDictionary *properties = @{
-                                         (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
-                                                 (__bridge NSString *)kCGImagePropertyGIFDelayTime : @(info.duration),
-                                                 }
-                                         };
-            CGImageDestinationAddImage(destination, *info.image, (__bridge CFDictionaryRef)properties);
-        }
-        CGImageDestinationFinalize(destination);
-        CFRelease(destination);
-        return [[NSImage alloc] initWithData:data];
-#endif
-    }
-    
+
 private:
+    BPG::Context _context;
     CG::ColorSpace _colorSpace;
-    BPGDecoderContext *_context;
-    BPGImageInfo _imageInfo;
-    size_t _imageLineSize;
-    size_t _imageTotalSize;
-#if TARGET_OS_IOS
-    CGFloat _imageScale;
-#endif
-    
+
     static void releaseImageData(void *info, const void *data, size_t size)
     {
         delete[] (uint8_t *)data;
     }
-    
-    uint8_t *getCurrentFrameBuffer() const
+
+    static CGFloat getScale()
     {
-        uint8_t *buffer = new uint8_t[this->_imageTotalSize];
-        for (int y = 0; y < this->_imageInfo.height; ++y) {
-            if (bpg_decoder_get_line(this->_context, buffer + (y * this->_imageLineSize)) == 0) {
-                continue;
-            }
-            delete[] buffer;
-            throw "bpg_decoder_get_line";
-        }
-        return buffer;
+#if TARGET_OS_IOS
+        return UIScreen.mainScreen.scale;
+#else
+        return 1;
+#endif
     }
-    
-    std::shared_ptr<CG::Image> getCurrentFrameCGImage() const
+
+    static HCImage *convertCGImage(const CG::Image& image, BPGImageInfo info, CGFloat scale)
     {
-        CG::DataProvider provider = CG::DataProvider(nullptr,
-                                                     this->getCurrentFrameBuffer(),
-                                                     this->_imageTotalSize,
-                                                     this->releaseImageData);
-        
-        return std::make_shared<CG::Image>(this->_imageInfo.width,
-                                           this->_imageInfo.height,
+#if TARGET_OS_IOS
+        return [UIImage imageWithCGImage:image
+                            scale:scale
+                      orientation:UIImageOrientationUp];
+#else
+        return [[NSImage alloc] initWithCGImage:image
+                                           size:NSMakeSize(info.width, info.height)];
+#endif
+    }
+
+    HCImage *processAnimated(BPGImageInfo info, BPGDecoderOutputFormat format, CGFloat scale) const
+    {
+#if TARGET_OS_IOS
+        auto images = [NSMutableArray array];
+        NSTimeInterval totalDuration = 0;
+        while (_context.start(format)) {
+            int num, den;
+            _context.getFrameDuration(&num, &den);
+            totalDuration += (NSTimeInterval)num / den;
+            [images addObject:convertCGImage(*createCurrentFrameImage(info), info, scale)];
+        }
+        return [UIImage animatedImageWithImages:images duration:totalDuration];
+#else
+        struct Frame {
+            std::shared_ptr<CG::Image> image;
+            NSTimeInterval duration;
+        };
+
+        std::vector<Frame> frames;
+        while (_context.start(format)) {
+            int num, den;
+            _context.getFrameDuration(&num, &den);
+            frames.push_back({
+                createCurrentFrameImage(info),
+                (NSTimeInterval)num / den
+            });
+        }
+
+        auto data = [NSMutableData data];
+        auto dest = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)data,
+                                                     kUTTypeGIF,
+                                                     frames.size(),
+                                                     nullptr);
+        auto destProperties = @{
+                                (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
+                                        (__bridge NSString *)kCGImagePropertyGIFLoopCount : @(info.loop_count),
+                                        }
+                                };
+        CGImageDestinationSetProperties(dest, (__bridge CFDictionaryRef)destProperties);
+        for (auto frame : frames) {
+            auto properties = @{
+                                (__bridge NSString *)kCGImagePropertyGIFDictionary : @{
+                                        (__bridge NSString *)kCGImagePropertyGIFDelayTime : @(frame.duration),
+                                        }
+                                };
+
+            CGImageDestinationAddImage(dest, *frame.image, (__bridge CFDictionaryRef)properties);
+        }
+        CGImageDestinationFinalize(dest);
+        CFRelease(dest);
+        return [[NSImage alloc] initWithData:data];
+#endif
+    }
+
+    std::shared_ptr<CG::Image> createCurrentFrameImage(BPGImageInfo info) const
+    {
+        auto bytesPerPixel = info.has_alpha ? 4 : 3;
+        auto lineLength = info.width * bytesPerPixel;
+        auto buffer = new uint8_t[lineLength * info.height];
+        for (auto y = 0; y < info.height; y++) {
+            if (!_context.getLine(buffer + lineLength * y)) {
+                break;
+            }
+        }
+
+        CG::DataProvider provider(nullptr,
+                                  buffer,
+                                  lineLength * info.height,
+                                  releaseImageData);
+
+        return std::make_shared<CG::Image>(info.width,
+                                           info.height,
                                            8,
-                                           (this->_imageInfo.has_alpha ? 4 : 3) * 8,
-                                           this->_imageLineSize,
-                                           this->_colorSpace,
-                                           (CGBitmapInfo)((this->_imageInfo.has_alpha ? kCGImageAlphaLast : kCGImageAlphaNone) | kCGBitmapByteOrder32Big),
+                                           8 * bytesPerPixel,
+                                           lineLength,
+                                           _colorSpace,
+                                           (CGBitmapInfo)((info.has_alpha ? kCGImageAlphaLast : kCGImageAlphaNone) | kCGBitmapByteOrder32Big),
                                            provider,
                                            nullptr,
                                            false,
                                            kCGRenderingIntentDefault);
     }
-    
-    HCImage *cgImageToHCImage(const CG::Image &image) const
-    {
-#if TARGET_OS_IOS
-        return [UIImage imageWithCGImage:image
-                                   scale:this->_imageScale
-                             orientation:UIImageOrientationUp];
-#else
-        return [[NSImage alloc] initWithCGImage:image
-                                           size:NSMakeSize(this->_imageInfo.width, this->_imageInfo.height)];
-#endif
-    }
 };
 
+// MARK:- HCImage+BPG
 @implementation HCImage (BPG)
 
 + (HCImage *)imageWithBPGData:(NSData *)data
 {
     NSParameterAssert(data);
-    try {
-        Decoder decoder((uint8_t *)data.bytes, (int)data.length);
-        return decoder.decode();
-    } catch (...) {
-        return nil;
-    }
+    ImageProcessor processor;
+    return processor.process(data);
 }
 
 @end
