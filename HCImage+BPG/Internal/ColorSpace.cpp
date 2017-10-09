@@ -21,7 +21,6 @@ ColorSpace::~ColorSpace()
 {
     if (_ref) {
         CGColorSpaceRelease(_ref);
-        _ref = nullptr;
     }
 }
 

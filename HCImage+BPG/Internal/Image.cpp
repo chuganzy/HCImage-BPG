@@ -27,7 +27,6 @@ Image::~Image()
 {
     if (_ref) {
         CGImageRelease(_ref);
-        _ref = nullptr;
     }
 }
 

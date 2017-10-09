@@ -17,7 +17,6 @@ DataProvider::~DataProvider()
 {
     if (_ref) {
         CGDataProviderRelease(_ref);
-        _ref = nullptr;
     }
 }
 
