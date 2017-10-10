@@ -8,3 +8,6 @@ env:
     - FASTLANE_ENV=macOS
 script:
   - bundle exec fastlane test --env $FASTLANE_ENV
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
