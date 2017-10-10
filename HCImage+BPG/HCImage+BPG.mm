@@ -118,8 +118,8 @@ private:
     {
 #if TARGET_OS_IOS
         return [UIImage imageWithCGImage:image
-                            scale:scale
-                      orientation:UIImageOrientationUp];
+                                   scale:scale
+                             orientation:UIImageOrientationUp];
 #else
         return [[NSImage alloc] initWithCGImage:image
                                            size:NSMakeSize(info.width, info.height)];
