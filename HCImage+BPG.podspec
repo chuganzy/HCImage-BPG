@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary                = 'BPG decoder for iOS and OS X'
   s.homepage               = 'https://github.com/chuganzy/HCImage-BPG'
   s.license                = { :type => 'MIT', :file => 'LICENSE' }
-  s.author                 = { 'Takeru Chuganji' => 'takeru@hoppenichu.com' }
+  s.author                 = { 'Takeru Chuganji' => 'chu@ganzy.jp' }
 
   s.ios.deployment_target  = '8.0'
   s.osx.deployment_target  = '10.10'
