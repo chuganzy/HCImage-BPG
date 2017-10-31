@@ -13,8 +13,8 @@ namespace CG
     class DataProvider
     {
     public:
-        DataProvider(void *, const void *, size_t,
-                     CGDataProviderReleaseDataCallback);
+        DataProvider(void *info, const void *data, size_t size,
+                     CGDataProviderReleaseDataCallback releaseData);
         ~DataProvider();
         
         operator CGDataProviderRef() const;

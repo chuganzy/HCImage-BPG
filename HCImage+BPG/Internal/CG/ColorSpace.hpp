@@ -3,8 +3,8 @@
 // Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef ColorSpace_hpp
-#define ColorSpace_hpp
+#ifndef CG_ColorSpace_hpp
+#define CG_ColorSpace_hpp
 
 #include <CoreGraphics/CGColorSpace.h>
 
@@ -15,7 +15,7 @@ namespace CG
     public:
         static ColorSpace CreateDeviceRGB();
         
-        ColorSpace(CGColorSpaceRef);
+        ColorSpace(CGColorSpaceRef ref);
         ~ColorSpace();
         
         operator CGColorSpaceRef() const;
@@ -25,4 +25,4 @@ namespace CG
     };
 }
 
-#endif /* ColorSpace_hpp */
+#endif /* CG_ColorSpace_hpp */
