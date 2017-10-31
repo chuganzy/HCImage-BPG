@@ -87,6 +87,12 @@
 		0083A2B91C94C98F00FCA6FF /* jpeg-00000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */; };
 		008BF1201CA71FBF00B71259 /* broken-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 008BF11F1CA71FBF00B71259 /* broken-00000.bpg */; };
 		008BF1211CA71FBF00B71259 /* broken-00000.bpg in Resources */ = {isa = PBXBuildFile; fileRef = 008BF11F1CA71FBF00B71259 /* broken-00000.bpg */; };
+		3FE2A3531F9CAEF6004C5A19 /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2A3511F9CAEF6004C5A19 /* Context.cpp */; };
+		3FE2A3541F9CAEF6004C5A19 /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2A3511F9CAEF6004C5A19 /* Context.cpp */; };
+		3FE2A3551F9CAEF6004C5A19 /* Context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FE2A3521F9CAEF6004C5A19 /* Context.hpp */; };
+		3FE2A3561F9CAEF6004C5A19 /* Context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FE2A3521F9CAEF6004C5A19 /* Context.hpp */; };
+		3FE2A3571F9CAF04004C5A19 /* BPG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FE2A3501F9CAEDE004C5A19 /* BPG.hpp */; };
+		3FE2A3581F9CAF04004C5A19 /* BPG.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FE2A3501F9CAEDE004C5A19 /* BPG.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +162,9 @@
 		00383F6B1C948417002321BA /* animation-00000.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "animation-00000.bpg"; sourceTree = "<group>"; };
 		0083A2B71C94C98F00FCA6FF /* jpeg-00000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "jpeg-00000.jpg"; sourceTree = "<group>"; };
 		008BF11F1CA71FBF00B71259 /* broken-00000.bpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "broken-00000.bpg"; sourceTree = "<group>"; };
+		3FE2A3501F9CAEDE004C5A19 /* BPG.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BPG.hpp; sourceTree = "<group>"; };
+		3FE2A3511F9CAEF6004C5A19 /* Context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Context.cpp; sourceTree = "<group>"; };
+		3FE2A3521F9CAEF6004C5A19 /* Context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Context.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,14 +254,9 @@
 		00383E5A1C936E59002321BA /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				3FE2A34F1F9CAE7E004C5A19 /* BGP */,
+				3FE2A34E1F9CAE74004C5A19 /* CG */,
 				00383E691C936E7B002321BA /* libbpg */,
-				00383E5B1C936E59002321BA /* CG.hpp */,
-				00383E5C1C936E59002321BA /* ColorSpace.cpp */,
-				00383E5D1C936E59002321BA /* ColorSpace.hpp */,
-				00383E5E1C936E59002321BA /* DataProvider.cpp */,
-				00383E5F1C936E59002321BA /* DataProvider.hpp */,
-				00383E601C936E59002321BA /* Image.cpp */,
-				00383E611C936E59002321BA /* Image.hpp */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -365,6 +369,30 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		3FE2A34E1F9CAE74004C5A19 /* CG */ = {
+			isa = PBXGroup;
+			children = (
+				00383E5B1C936E59002321BA /* CG.hpp */,
+				00383E5C1C936E59002321BA /* ColorSpace.cpp */,
+				00383E5D1C936E59002321BA /* ColorSpace.hpp */,
+				00383E5E1C936E59002321BA /* DataProvider.cpp */,
+				00383E5F1C936E59002321BA /* DataProvider.hpp */,
+				00383E601C936E59002321BA /* Image.cpp */,
+				00383E611C936E59002321BA /* Image.hpp */,
+			);
+			path = CG;
+			sourceTree = "<group>";
+		};
+		3FE2A34F1F9CAE7E004C5A19 /* BGP */ = {
+			isa = PBXGroup;
+			children = (
+				3FE2A3501F9CAEDE004C5A19 /* BPG.hpp */,
+				3FE2A3511F9CAEF6004C5A19 /* Context.cpp */,
+				3FE2A3521F9CAEF6004C5A19 /* Context.hpp */,
+			);
+			path = BGP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -372,12 +400,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE2A3571F9CAF04004C5A19 /* BPG.hpp in Headers */,
 				00383E571C93687F002321BA /* HCAttributes.h in Headers */,
 				00383E581C93687F002321BA /* HCImage.h in Headers */,
 				00383E681C936E59002321BA /* Image.hpp in Headers */,
 				00383E621C936E59002321BA /* CG.hpp in Headers */,
 				00383E641C936E59002321BA /* ColorSpace.hpp in Headers */,
 				00383E1A1C9367A8002321BA /* HCImage+BPG.h in Headers */,
+				3FE2A3551F9CAEF6004C5A19 /* Context.hpp in Headers */,
 				00383E731C936E7B002321BA /* libbpg.h in Headers */,
 				00383E661C936E59002321BA /* DataProvider.hpp in Headers */,
 			);
@@ -387,12 +417,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE2A3581F9CAF04004C5A19 /* BPG.hpp in Headers */,
 				00383EA11C946A2D002321BA /* CG.hpp in Headers */,
 				00383E9F1C946A13002321BA /* HCAttributes.h in Headers */,
 				00383EA71C946A2D002321BA /* Image.hpp in Headers */,
 				00383E9D1C946A0A002321BA /* HCImage.h in Headers */,
 				00383EA01C946A26002321BA /* libbpg.h in Headers */,
 				00383EA51C946A2D002321BA /* DataProvider.hpp in Headers */,
+				3FE2A3561F9CAEF6004C5A19 /* Context.hpp in Headers */,
 				00383E9E1C946A0E002321BA /* HCImage+BPG.h in Headers */,
 				00383EA31C946A2D002321BA /* ColorSpace.hpp in Headers */,
 			);
@@ -603,6 +635,7 @@
 				00383E631C936E59002321BA /* ColorSpace.cpp in Sources */,
 				00383E671C936E59002321BA /* Image.cpp in Sources */,
 				00383E651C936E59002321BA /* DataProvider.cpp in Sources */,
+				3FE2A3531F9CAEF6004C5A19 /* Context.cpp in Sources */,
 				00383E591C93687F002321BA /* HCImage+BPG.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +655,7 @@
 				00383EA21C946A2D002321BA /* ColorSpace.cpp in Sources */,
 				00383EA61C946A2D002321BA /* Image.cpp in Sources */,
 				00383EA41C946A2D002321BA /* DataProvider.cpp in Sources */,
+				3FE2A3541F9CAEF6004C5A19 /* Context.cpp in Sources */,
 				00383E9C1C946A02002321BA /* HCImage+BPG.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

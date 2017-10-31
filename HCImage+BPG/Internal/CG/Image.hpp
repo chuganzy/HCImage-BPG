@@ -17,12 +17,12 @@ namespace CG
     class Image
     {
     public:
-        Image(size_t, size_t,
-              size_t, size_t, size_t,
-              const ColorSpace &, CGBitmapInfo,
-              const DataProvider &,
-              const CGFloat *, bool,
-              CGColorRenderingIntent);
+        Image(size_t width, size_t height,
+              size_t bitsPerComponent, size_t bitsPerPixel, size_t bytesPerRow,
+              const ColorSpace &space, CGBitmapInfo bitmapInfo,
+              const DataProvider &provider,
+              const CGFloat *decode, bool shouldInterpolate,
+              CGColorRenderingIntent intent);
         ~Image();
         
         operator CGImageRef() const;

@@ -6,62 +6,12 @@
 #import "HCImage+BPG.h"
 #import <vector>
 #import <memory>
+#import "BPG.hpp"
 #import "CG.hpp"
+
 #if TARGET_OS_IOS
 #import <UIKit/UIScreen.h>
 #endif
-
-extern "C" {
-#import "libbpg.h"
-}
-
-// MARK:- BPG
-namespace BPG
-{
-    // MARK: Context
-    class Context
-    {
-    public:
-        Context(): _context(bpg_decoder_open())
-        {
-        }
-
-        ~Context()
-        {
-            if (_context) {
-                bpg_decoder_close(_context);
-            }
-        }
-
-        bool decode(const uint8_t *buffer, int length) const
-        {
-            return bpg_decoder_decode(_context, buffer, length) == 0;
-        }
-
-        bool start(BPGDecoderOutputFormat format) const
-        {
-            return bpg_decoder_start(_context, format) == 0;
-        }
-
-        bool getInfo(BPGImageInfo *info) const
-        {
-            return bpg_decoder_get_info(_context, info) == 0;
-        }
-
-        void getFrameDuration(int *pnum, int *pden) const
-        {
-            bpg_decoder_get_frame_duration(_context, pnum, pden);
-        }
-
-        bool getLine(void *buffer) const
-        {
-            return bpg_decoder_get_line(_context, buffer) == 0;
-        }
-
-    private:
-        BPGDecoderContext *_context;
-    };
-}
 
 // MARK:- ImageProcessor
 class ImageProcessor
