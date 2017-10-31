@@ -3,8 +3,8 @@
 // Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef DataProvider_hpp
-#define DataProvider_hpp
+#ifndef CG_DataProvider_hpp
+#define CG_DataProvider_hpp
 
 #include <CoreGraphics/CGDataProvider.h>
 
@@ -24,4 +24,4 @@ namespace CG
     };
 }
 
-#endif /* DataProvider_hpp */
+#endif /* CG_DataProvider_hpp */

@@ -6,9 +6,9 @@
 //  Copyright © 2017 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef BPG_h
-#define BPG_h
+#ifndef BPG_hpp
+#define BPG_hpp
 
 #include "Context.hpp"
 
-#endif /* BPG_h */
+#endif /* BPG_hpp */

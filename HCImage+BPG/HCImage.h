@@ -3,8 +3,8 @@
 // Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef _HCImage_h
-#define _HCImage_h
+#ifndef HCImage_h
+#define HCImage_h
 
 #if TARGET_OS_IOS
 
@@ -18,4 +18,4 @@
 
 #endif
 
-#endif /* _HCImage_h */
+#endif /* HCImage_h */

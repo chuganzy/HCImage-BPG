@@ -6,8 +6,8 @@
 //  Copyright © 2017 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef Context_hpp
-#define Context_hpp
+#ifndef BPG_Context_hpp
+#define BPG_Context_hpp
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -34,4 +34,4 @@ namespace BPG {
     
 }
 
-#endif /* Context_hpp */
+#endif /* BPG_Context_hpp */
