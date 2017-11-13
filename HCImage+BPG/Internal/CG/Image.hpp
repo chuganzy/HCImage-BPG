@@ -3,8 +3,8 @@
 // Copyright (c) 2014 Takeru Chuganji. All rights reserved.
 //
 
-#ifndef Image_hpp
-#define Image_hpp
+#ifndef CG_Image_hpp
+#define CG_Image_hpp
 
 #include <CoreGraphics/CGImage.h>
 
@@ -32,4 +32,4 @@ namespace CG
     };
 }
 
-#endif /* Image_hpp */
+#endif /* CG_Image_hpp */
