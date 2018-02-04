@@ -1,8 +1,5 @@
 language: objective-c
 osx_image: xcode9.2
-branches:
-  only:
-    - master
 cache:
   directories:
     - bundler
