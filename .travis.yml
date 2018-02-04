@@ -9,6 +9,8 @@ env:
   matrix:
     - FASTLANE_ENV=iOS
     - FASTLANE_ENV=macOS
+install:
+  - bundle install
 script:
   - bundle exec fastlane test --env $FASTLANE_ENV
 before_deploy:
