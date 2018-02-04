@@ -17,7 +17,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: releases
-    api_key: ${GITHUB_API_TOKEN}
+    api_key: $GITHUB_API_TOKEN
     file: HCImageBPG.framework.zip
     skip_cleanup: true
     on:
