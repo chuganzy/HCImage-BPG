@@ -10,6 +10,15 @@ env:
     - FASTLANE_ENV=macOS
 script:
   - bundle exec fastlane test --env $FASTLANE_ENV
-
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+deploy:
+  provider: releases
+  api_key: ${GITHUB_API_TOKEN}
+  file: HCImageBPG.framework.zip
+  skip_cleanup: true
+  on:
+    tags: true
