@@ -1,13 +1,17 @@
 language: objective-c
 osx_image: xcode9.2
 branches:
-  - master
+  only:
+    - master
 cache:
-  - bundler
+  directories:
+    - bundler
 env:
   matrix:
     - FASTLANE_ENV=iOS
     - FASTLANE_ENV=macOS
+install:
+  - bundle install
 script:
   - bundle exec fastlane test --env $FASTLANE_ENV
 before_deploy:
