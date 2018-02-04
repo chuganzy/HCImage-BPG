@@ -1,8 +1,4 @@
 lane :test do
   scan
   pod_lib_lint
-  carthage(
-    command: 'build',
-    no_skip_current: true,
-  )
 end
