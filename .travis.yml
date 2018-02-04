@@ -4,7 +4,8 @@ branches:
   only:
     - master
 cache:
-  - bundler
+  directories:
+    - bundler
 env:
   matrix:
     - FASTLANE_ENV=iOS
